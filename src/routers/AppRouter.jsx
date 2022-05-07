@@ -1,0 +1,31 @@
+// Development Components
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Components
+import Header from "../components/Header";
+
+// Pages
+import PageHome from "../pages/PageHome";
+import PageAbout from "../pages/PageAbout";
+import PageFavourites from "../pages/PageFavourites";
+import PageIndividual from "../pages/PageIndividual";
+
+function AppRouter() {
+  return (
+    <BrowserRouter>
+      <div className='wrapper'>
+        <Header />
+        <main>
+          <Routes>
+            <Route path='/' element={<PageHome />} />
+            <Route path='/about' element={<PageAbout />} />
+            <Route path='/favourites' element={<PageFavourites />} />
+            <Route path='/movie/:id' element={<PageIndividual />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default AppRouter;

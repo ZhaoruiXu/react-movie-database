@@ -1,0 +1,19 @@
+/* Typography
+--------------------------------------------- */
+body {
+  font-family: $font;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
