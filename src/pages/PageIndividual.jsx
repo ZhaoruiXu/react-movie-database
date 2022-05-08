@@ -52,7 +52,7 @@ const PageIndividual = () => {
   return (
     <section className='individual-page'>
       <div className='movie-poster'>
-        {movieObj.poster_path === false ? (
+        {movieObj.poster_path === undefined ? (
           <img src={noPoster} alt='No poster avaliable' />
         ) : (
           <img
@@ -63,7 +63,7 @@ const PageIndividual = () => {
       </div>
 
       <div className='movie-backdrop'>
-        {movieObj.backdrop_path === false ? (
+        {movieObj.backdrop_path === undefined ? (
           <img src={noPoster} alt='No backdrop avaliable' />
         ) : (
           <img

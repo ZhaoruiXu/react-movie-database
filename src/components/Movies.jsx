@@ -1,7 +1,6 @@
 import MovieCard from "./MovieCard";
 
 export default function Movies({ moviesData }) {
-  console.log("haha", moviesData);
   return (
     <div className='movies-container'>
       {moviesData &&
