@@ -1,6 +1,13 @@
 export const appTitle = ".MovDb";
 export const API_KEY = "b3ae8fbaf360bb8bec2aa030f5f38b60";
 export const appStorageName = "mov-db-favs";
+export const catStorageName = "mov-dv-category";
+export const movieCategories = [
+  "popular",
+  "now_playing",
+  "top_rated",
+  "upcoming",
+];
 
 // https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg   get image
 // https://api.themoviedb.org/3/movie/top_rated?api_key=b3ae8fbaf360bb8bec2aa030f5f38b60&language=en-US&page=2  get top-rated

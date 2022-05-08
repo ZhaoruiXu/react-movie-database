@@ -52,24 +52,28 @@ const PageIndividual = () => {
   return (
     <section className='individual-page'>
       <div className='movie-poster'>
-        {movieObj.poster_path === undefined ? (
+        {movieObj.poster_path === false ? (
           <img src={noPoster} alt='No poster avaliable' />
         ) : (
-          <img
-            src={endPointGetPoster + movieObj.poster_path}
-            alt={movieObj.title}
-          />
+          movieObj.poster_path !== undefined && (
+            <img
+              src={endPointGetPoster + movieObj.poster_path}
+              alt={movieObj.title}
+            />
+          )
         )}
       </div>
 
       <div className='movie-backdrop'>
-        {movieObj.backdrop_path === undefined ? (
+        {movieObj.backdrop_path === false ? (
           <img src={noPoster} alt='No backdrop avaliable' />
         ) : (
-          <img
-            src={endPointGetBackdrop + movieObj.backdrop_path}
-            alt={movieObj.title}
-          />
+          movieObj.poster_path !== undefined && (
+            <img
+              src={endPointGetBackdrop + movieObj.backdrop_path}
+              alt={movieObj.title}
+            />
+          )
         )}
       </div>
 

@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import noPoster from "../images/no-movie-poster.jpg";
 import { endPointGetPoster, API_KEY } from "../globals/globals";
 import FavButton from "../components/FavButton";
-import { useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
 
 export default function MovieCard({ movieId }) {
@@ -38,12 +37,7 @@ export default function MovieCard({ movieId }) {
         fetchMovieObj();
       }
     }
-  }, [movieId, isFav, favs]);
-
-  // useEffect(() => {
-  //   const isFav = favs.some(obj => obj.id === movieId);
-  //   setIsFave(isFav);
-  // }, [movieId, favs]);
+  }, [movieId, favs]);
 
   const handleMovieClick = () => {
     navigate(`/movie/${movieObj.id}`);
@@ -67,13 +61,15 @@ export default function MovieCard({ movieId }) {
   return (
     <div onClick={handleMovieClick} className='movie-card'>
       <div className='movie-poster'>
-        {movieObj.poster_path === undefined ? (
+        {movieObj.poster_path === false ? (
           <img src={noPoster} alt='No poster avaliable' />
         ) : (
-          <img
-            src={endPointGetPoster + movieObj.poster_path}
-            alt={movieObj.title}
-          />
+          movieObj.poster_path !== undefined && (
+            <img
+              src={endPointGetPoster + movieObj.poster_path}
+              alt={movieObj.title}
+            />
+          )
         )}
       </div>
       <div className='movie-info'>
