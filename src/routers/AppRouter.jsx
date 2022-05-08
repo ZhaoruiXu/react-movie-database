@@ -9,6 +9,7 @@ import PageHome from "../pages/PageHome";
 import PageAbout from "../pages/PageAbout";
 import PageFavourites from "../pages/PageFavourites";
 import PageIndividual from "../pages/PageIndividual";
+import PageSearch from "../pages/PageSearch";
 
 function AppRouter() {
   return (
@@ -21,6 +22,8 @@ function AppRouter() {
             <Route path='/about' element={<PageAbout />} />
             <Route path='/favourites' element={<PageFavourites />} />
             <Route path='/movie/:id' element={<PageIndividual />} />
+            <Route path='/search/:query' element={<PageSearch />} />
+            <Route path='*' element={<PageHome />} />
           </Routes>
         </main>
       </div>

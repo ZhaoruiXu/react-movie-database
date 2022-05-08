@@ -41,7 +41,6 @@ export default function MovieCard({ movieId }) {
 
   const handleMovieClick = () => {
     navigate(`/movie/${movieObj.id}`);
-    console.log("nav");
   };
 
   const handleFavButtonClick = (e, movieObj) => {
@@ -49,12 +48,10 @@ export default function MovieCard({ movieId }) {
     e.stopPropagation();
     if (isFav) {
       dispatch(deleteFav(movieObj));
-      console.log("fav delete");
-      //remove from localStorage
+      //remove from localStorage and redux store
     } else {
       dispatch(addFav(movieObj));
-      console.log("fav added");
-      //add to localStorage
+      //add to localStorage and redux store
     }
   };
 

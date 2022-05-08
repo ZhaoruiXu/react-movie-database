@@ -1,13 +1,27 @@
-// import searchIcon from "../images/search-icon.svg";
 import { BiSearch } from "react-icons/bi";
-// import { FaBeer } from "react-icons/fa";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const SearchBar = () => {
+  const [searchInput, setSearchInput] = useState("");
+  // navigate to another page view
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = () => {
+    navigate(`/search/${searchInput}`);
+  };
+
   return (
     <div className='search-bar'>
-      <input type='text' placeholder='Search' />
-      {/* <img src={searchIcon} alt='search icon' /> */}
-      {/* <BiSearch /> */}
-      <BiSearch />
+      <form onSubmit={handleSearchSubmit}>
+        <input
+          type='text'
+          placeholder='Search'
+          value={searchInput}
+          onChange={e => setSearchInput(e.target.value)}
+        />
+        <BiSearch />
+      </form>
     </div>
   );
 };
