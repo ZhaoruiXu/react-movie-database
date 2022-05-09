@@ -1,7 +1,8 @@
 export const appTitle = ".MovDb";
 export const API_KEY = "b3ae8fbaf360bb8bec2aa030f5f38b60";
 export const appStorageName = "mov-db-favs";
-export const catStorageName = "mov-dv-category";
+export const catStorageName = "mov-db-category";
+export const searchQueryStorageName = "mov-db-search";
 export const movieCategories = [
   "popular",
   "now_playing",

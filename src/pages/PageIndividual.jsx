@@ -83,11 +83,13 @@ const PageIndividual = () => {
       </div>
 
       <div className='movie-info'>
-        <h3>{movieObj.title ? movieObj.title : "N/A"}</h3>
-        <p>{movieObj.tagline ? movieObj.tagline : "N/A"}</p>
-        <p>{movieObj.runtime ? movieObj.runtime : "N/A"}</p>
-        <p>{movieObj.vote_average ? movieObj.vote_average : "N/A"}</p>
-        <p>{movieObj.release_date ? movieObj.release_date : "N/A"}</p>
+        <h3>{movieObj.title ? movieObj.title : "Title N/A"}</h3>
+        <p>{movieObj.tagline ? movieObj.tagline : "Tagline N/A"}</p>
+        <p>{movieObj.runtime ? movieObj.runtime : "Run Time N/A"}</p>
+        <p>{movieObj.vote_average ? movieObj.vote_average : "Rating N/A"}</p>
+        <p>
+          {movieObj.release_date ? movieObj.release_date : "Release Date N/A"}
+        </p>
         {movieObj.genres &&
           movieObj.genres.map(oneMovGenre => {
             return <p key={oneMovGenre.id}>{oneMovGenre.name}</p>;
