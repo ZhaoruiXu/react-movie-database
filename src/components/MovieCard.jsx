@@ -58,7 +58,7 @@ export default function MovieCard({ movieId }) {
   return (
     <div onClick={handleMovieClick} className='movie-card'>
       <div className='movie-poster'>
-        {movieObj.poster_path === false ? (
+        {movieObj.poster_path === null ? (
           <img src={noPoster} alt='No poster avaliable' />
         ) : (
           movieObj.poster_path !== undefined && (

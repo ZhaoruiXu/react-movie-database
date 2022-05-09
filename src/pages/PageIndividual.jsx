@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   appTitle,
   API_KEY,
@@ -17,21 +17,26 @@ const PageIndividual = () => {
   const [movieObj, setMovieObj] = useState(false);
   const [isFav, setIsFave] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const favs = useSelector(state => state.favs.items);
 
   useEffect(() => {
-    if (id) {
+    if (id || id !== undefined) {
       const fetchMovieObj = async () => {
         const res = await fetch(
           `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
         );
-        let data = await res.json();
-        setMovieObj(data);
+        if (res.status !== 200) {
+          navigate("/");
+        } else {
+          let data = await res.json();
+          setMovieObj(data);
+        }
       };
       fetchMovieObj();
     }
-  }, [id]);
+  }, [id, navigate]);
 
   useEffect(() => {
     document.title = `${appTitle} | ${movieObj.title}`;
@@ -52,7 +57,7 @@ const PageIndividual = () => {
   return (
     <section className='individual-page'>
       <div className='movie-poster'>
-        {movieObj.poster_path === false ? (
+        {movieObj.poster_path === null ? (
           <img src={noPoster} alt='No poster avaliable' />
         ) : (
           movieObj.poster_path !== undefined && (
@@ -65,7 +70,7 @@ const PageIndividual = () => {
       </div>
 
       <div className='movie-backdrop'>
-        {movieObj.backdrop_path === false ? (
+        {movieObj.backdrop_path === null ? (
           <img src={noPoster} alt='No backdrop avaliable' />
         ) : (
           movieObj.poster_path !== undefined && (

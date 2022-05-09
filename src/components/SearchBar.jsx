@@ -1,4 +1,5 @@
 import { BiSearch } from "react-icons/bi";
+import { TiDelete } from "react-icons/ti";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,20 +8,24 @@ const SearchBar = () => {
   // navigate to another page view
   const navigate = useNavigate();
 
-  const handleSearchSubmit = () => {
+  const handleSearchSubmit = e => {
+    e.preventDefault();
     navigate(`/search/${searchInput}`);
   };
 
   return (
     <div className='search-bar'>
-      <form onSubmit={handleSearchSubmit}>
+      <form onSubmit={e => handleSearchSubmit(e)}>
+        <BiSearch />
         <input
           type='text'
           placeholder='Search'
           value={searchInput}
           onChange={e => setSearchInput(e.target.value)}
         />
-        <BiSearch />
+        <div onClick={() => setSearchInput("")}>
+          <TiDelete />
+        </div>
       </form>
     </div>
   );
