@@ -28,6 +28,7 @@ const PageIndividual = () => {
           `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
         );
         if (res.status !== 200) {
+          console.log(res.status);
           navigate("/");
         } else {
           let data = await res.json();
@@ -36,7 +37,7 @@ const PageIndividual = () => {
       };
       fetchMovieObj();
     }
-  }, [id, navigate]);
+  }, [id]);
 
   useEffect(() => {
     document.title = `${appTitle} | ${movieObj.title}`;
@@ -47,10 +48,8 @@ const PageIndividual = () => {
   const handleFavButtonClick = movieObj => {
     if (isFav) {
       dispatch(deleteFav(movieObj));
-      console.log("fav delete");
     } else {
       dispatch(addFav(movieObj));
-      console.log("fav added");
     }
   };
 

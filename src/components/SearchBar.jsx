@@ -1,13 +1,12 @@
 import { BiSearch } from "react-icons/bi";
 import { TiDelete } from "react-icons/ti";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSearchQuery } from "../features/searchQuery/searchQuerySlice";
 
 const SearchBar = () => {
-  // const [searchInput, setSearchInput] = useState("");
-
+  const previousSearchQuery = useRef("");
   const searchInput = useSelector(state => state.searchQuery.item);
   const dispatch = useDispatch();
 
@@ -17,10 +16,16 @@ const SearchBar = () => {
   // auto-update search result
   useEffect(() => {
     const updateSearch = () => {
-      if (searchInput) {
+      // store previous search query state value
+      console.log(searchInput, previousSearchQuery.current);
+      if (searchInput && searchInput !== previousSearchQuery.current) {
+        //bug
+        console.log("caught");
+
         navigate(`/search/${searchInput}`);
-      } else if (searchInput === "") {
-        navigate("/");
+      } else if (searchInput === "" && previousSearchQuery.current !== "") {
+        console.log(previousSearchQuery.current);
+        navigate("/"); // bug
       }
     };
 
@@ -29,6 +34,7 @@ const SearchBar = () => {
 
     return () => {
       clearTimeout(timer);
+      previousSearchQuery.current = searchInput; // setting previous state to useRef
     };
   }, [searchInput]);
 

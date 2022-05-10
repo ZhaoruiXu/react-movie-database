@@ -30,8 +30,6 @@ export default function MovieCard({ movieId }) {
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
           );
           let data = await res.json();
-          console.log(data.title);
-
           setMovieObj(data);
         };
         fetchMovieObj();
