@@ -55,12 +55,30 @@ export default function MovieCard({ movieId }) {
   };
 
   const processMovTitle = movTitle => {
-    if (movTitle.length > 25) {
-      return `${movTitle.substr(0, 30)} ...`;
+    if (movTitle.length > 28) {
+      return `${movTitle.substr(0, 28)} ...`;
     }
+    return movTitle;
   };
 
-  const processMovRuntime = movRuntime => {};
+  const processMovRuntime = totalMinutes => {
+    const minutes = totalMinutes % 60;
+    const hours = Math.floor(totalMinutes / 60);
+    return `${hours}h ${minutes}m`;
+  };
+
+  const processMovGenre = movGenres => {
+    if (movGenres.length > 3) {
+      movGenres = movGenres.slice(0, 3);
+    }
+    return movGenres.map(oneMovGenre => {
+      return (
+        <p className='movie-genre' key={oneMovGenre.id}>
+          {oneMovGenre.name}
+        </p>
+      );
+    });
+  };
 
   return (
     <div onClick={handleMovieClick} className='movie-card'>
@@ -78,25 +96,16 @@ export default function MovieCard({ movieId }) {
       </div>
       <div className='movie-info'>
         <h3 className='movie-title'>
-          {movieObj.title ? processMovTitle(movieObj.title) : "Title N/A"}
+          {movieObj.title && processMovTitle(movieObj.title)}
         </h3>
         <p className='movie-run-time'>
-          {movieObj.runtime
-            ? processMovRuntime(movieObj.runtime)
-            : "Run Time N/A"}
+          {movieObj.runtime && processMovRuntime(movieObj.runtime)}
         </p>
         <p className='movie-rating'>
-          {movieObj.vote_average ? movieObj.vote_average : "Rating N/A"}
+          {movieObj.vote_average ? movieObj.vote_average : null}
         </p>
         <div className='genre-contaniner'>
-          {movieObj.genres &&
-            movieObj.genres.map(oneMovGenre => {
-              return (
-                <p className='movie-genre' key={oneMovGenre.id}>
-                  {oneMovGenre.name}
-                </p>
-              );
-            })}
+          {movieObj.genres && processMovGenre(movieObj.genres)}
         </div>
       </div>
       <FavButton

@@ -1,43 +1,58 @@
 .movies-container {
   display: grid;
   grid-template-columns: 1fr;
-  justify-content: center;
+  gap: 1rem;
+  justify-items: center;
   align-items: center;
   .movie-card {
+    height: 100%;
     background-color: $dark-grey;
     display: flex;
     position: relative;
     flex-direction: column;
     color: $white;
-    margin: 1rem auto;
     max-width: 18rem;
     .fav-button {
       position: absolute;
       top: 0;
       right: 0;
     }
+    .movie-poster {
+      flex-grow: 1;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
     .movie-info {
       .movie-run-time {
         position: absolute;
         left: 0;
-        top: 50%;
+        top: 76%;
+        margin: 0 0.75rem;
+        font-size: 1.25rem;
       }
       .movie-rating {
         position: absolute;
         right: 0;
-        top: 50%;
+        top: 76%;
+        margin: 0 0.75rem;
+        font-size: 1.25rem;
+        color: $yellow;
       }
       .movie-title {
         font-weight: 500;
-        margin: 0.25rem 0.5rem;
+        margin: 0.5rem;
       }
       .genre-contaniner {
         display: flex;
-        margin: 1rem 0;
+        flex-wrap: wrap;
+        margin: 1rem 0.25rem;
         .movie-genre {
-          background-color: $lightest-grey;
+          background-color: $light-grey;
           border-radius: 0.5rem;
-          padding: 0.11rem 0.25rem;
+          padding: 0.1rem 0.25rem;
           margin: 0 0.25rem;
           font-weight: 300;
         }
