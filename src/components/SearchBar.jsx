@@ -19,13 +19,9 @@ const SearchBar = () => {
       // store previous search query state value
       console.log(searchInput, previousSearchQuery.current);
       if (searchInput && searchInput !== previousSearchQuery.current) {
-        //bug
-        console.log("caught");
-
         navigate(`/search/${searchInput}`);
       } else if (searchInput === "" && previousSearchQuery.current !== "") {
-        console.log(previousSearchQuery.current);
-        navigate("/"); // bug
+        navigate("/");
       }
     };
 
@@ -39,17 +35,24 @@ const SearchBar = () => {
   }, [searchInput]);
 
   return (
-    <div className='search-bar'>
-      <BiSearch />
+    <div className='search-bar' style={{ width: searchInput && "50%" }}>
+      <div className='search-icon'>
+        <BiSearch />
+      </div>
       <input
         type='text'
-        placeholder='Search'
+        placeholder='Search a movie'
+        maxLength='16'
         value={searchInput}
         onChange={e => dispatch(updateSearchQuery(e.target.value))}
       />
-      <div onClick={() => dispatch(updateSearchQuery(""))}>
-        <TiDelete />
-      </div>
+      {searchInput && (
+        <div
+          className='search-clear-btn'
+          onClick={() => dispatch(updateSearchQuery(""))}>
+          <TiDelete />
+        </div>
+      )}
     </div>
   );
 };

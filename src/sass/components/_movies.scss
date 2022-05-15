@@ -1,0 +1,47 @@
+.movies-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  .movie-card {
+    background-color: $dark-grey;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    color: $white;
+    margin: 1rem auto;
+    max-width: 18rem;
+    .fav-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .movie-info {
+      .movie-run-time {
+        position: absolute;
+        left: 0;
+        top: 50%;
+      }
+      .movie-rating {
+        position: absolute;
+        right: 0;
+        top: 50%;
+      }
+      .movie-title {
+        font-weight: 500;
+        margin: 0.25rem 0.5rem;
+      }
+      .genre-contaniner {
+        display: flex;
+        margin: 1rem 0;
+        .movie-genre {
+          background-color: $lightest-grey;
+          border-radius: 0.5rem;
+          padding: 0.11rem 0.25rem;
+          margin: 0 0.25rem;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}

@@ -30,6 +30,7 @@ export default function MovieCard({ movieId }) {
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
           );
           let data = await res.json();
+
           setMovieObj(data);
         };
         fetchMovieObj();
@@ -53,6 +54,14 @@ export default function MovieCard({ movieId }) {
     }
   };
 
+  const processMovTitle = movTitle => {
+    if (movTitle.length > 25) {
+      return `${movTitle.substr(0, 30)} ...`;
+    }
+  };
+
+  const processMovRuntime = movRuntime => {};
+
   return (
     <div onClick={handleMovieClick} className='movie-card'>
       <div className='movie-poster'>
@@ -68,13 +77,27 @@ export default function MovieCard({ movieId }) {
         )}
       </div>
       <div className='movie-info'>
-        <h3>{movieObj.title ? movieObj.title : "Title N/A"}</h3>
-        <p>{movieObj.runtime ? movieObj.runtime : "Run Time N/A"}</p>
-        <p>{movieObj.vote_average ? movieObj.vote_average : "Rating N/A"}</p>
-        {movieObj.genres &&
-          movieObj.genres.map(oneMovGenre => {
-            return <p key={oneMovGenre.id}>{oneMovGenre.name}</p>;
-          })}
+        <h3 className='movie-title'>
+          {movieObj.title ? processMovTitle(movieObj.title) : "Title N/A"}
+        </h3>
+        <p className='movie-run-time'>
+          {movieObj.runtime
+            ? processMovRuntime(movieObj.runtime)
+            : "Run Time N/A"}
+        </p>
+        <p className='movie-rating'>
+          {movieObj.vote_average ? movieObj.vote_average : "Rating N/A"}
+        </p>
+        <div className='genre-contaniner'>
+          {movieObj.genres &&
+            movieObj.genres.map(oneMovGenre => {
+              return (
+                <p className='movie-genre' key={oneMovGenre.id}>
+                  {oneMovGenre.name}
+                </p>
+              );
+            })}
+        </div>
       </div>
       <FavButton
         handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
