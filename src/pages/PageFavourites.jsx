@@ -11,12 +11,10 @@ const PageFavourites = () => {
   }, []);
 
   return (
-    <main>
-      <section className='favourites-page'>
-        <h2>Favourites Page</h2>
-        <Movies moviesData={favs} />
-      </section>
-    </main>
+    <section className='favourites-page'>
+      <h2>Favourites Page</h2>
+      <Movies moviesData={favs} />
+    </section>
   );
 };
 

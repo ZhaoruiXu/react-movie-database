@@ -64,7 +64,18 @@ export default function MovieCard({ movieId }) {
   const processMovRuntime = totalMinutes => {
     const minutes = totalMinutes % 60;
     const hours = Math.floor(totalMinutes / 60);
+    if (hours === 0 && minutes === 0) {
+      return;
+    } else if (hours === 0) {
+      return `${minutes}m`;
+    } else if (minutes === 0) {
+      return `${hours}h`;
+    }
     return `${hours}h ${minutes}m`;
+  };
+
+  const processMovRating = movRating => {
+    return movRating.toFixed(1);
   };
 
   const processMovGenre = movGenres => {
@@ -99,12 +110,14 @@ export default function MovieCard({ movieId }) {
           {movieObj.title && processMovTitle(movieObj.title)}
         </h3>
         <p className='movie-run-time'>
-          {movieObj.runtime && processMovRuntime(movieObj.runtime)}
+          {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
         </p>
         <p className='movie-rating'>
-          {movieObj.vote_average ? movieObj.vote_average : null}
+          {movieObj.vote_average
+            ? processMovRating(movieObj.vote_average)
+            : null}
         </p>
-        <div className='genre-contaniner'>
+        <div className='movie-genre-contaniner'>
           {movieObj.genres && processMovGenre(movieObj.genres)}
         </div>
       </div>

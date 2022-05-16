@@ -10,7 +10,7 @@ export default function NavMain({ reference }) {
     <nav
       className='nav-menu'
       ref={reference}
-      style={{ height: isNavOpen ? "auto" : "0" }}
+      style={{ height: isNavOpen ? "154.78px" : "0" }}
       onClick={() => {
         dispatch(updateNavState(false));
       }}>

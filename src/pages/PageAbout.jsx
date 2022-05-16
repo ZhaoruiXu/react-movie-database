@@ -7,11 +7,9 @@ const PageAbout = () => {
   }, []);
 
   return (
-    <main>
-      <section className='about-page'>
-        <h2>About Page</h2>
-      </section>
-    </main>
+    <section className='about-page'>
+      <h2>About Page</h2>
+    </section>
   );
 };
 

@@ -14,7 +14,6 @@ export default function MenuButton({ reference }) {
       }}
       onClick={() => {
         dispatch(updateNavState(!isNavOpen));
-        console.log("hamburger click");
       }}>
       <div className={`bar bar1 ${isNavOpen ? "moveDown" : ""}`}></div>
       <div className='bar bar2'></div>

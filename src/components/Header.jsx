@@ -23,7 +23,6 @@ const Header = () => {
         !insideMenuButton.current.contains(e.target) &&
         isNavOpen
       ) {
-        console.log("outside");
         dispatch(updateNavState(false));
         return;
       }
