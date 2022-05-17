@@ -11,6 +11,7 @@ export default function NavMain({ reference }) {
       className='nav-menu'
       ref={reference}
       style={{ height: isNavOpen ? "154.78px" : "0" }}
+      // style={{ transform: `translateY(${isNavOpen ? "0" : "-100%"})` }}
       onClick={() => {
         dispatch(updateNavState(false));
       }}>

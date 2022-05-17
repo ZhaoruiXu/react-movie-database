@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSearchQuery } from "../features/searchQuery/searchQuerySlice";
 
-const SearchBar = () => {
+const SearchBar = ({ reference }) => {
   const previousSearchQuery = useRef("");
   const searchInput = useSelector(state => state.searchQuery.item);
   const dispatch = useDispatch();
@@ -41,11 +41,12 @@ const SearchBar = () => {
       </div>
       <input
         type='text'
-        placeholder='Search'
+        placeholder='Search a movie'
         maxLength='16'
         value={searchInput}
         onChange={e => dispatch(updateSearchQuery(e.target.value))}
         onFocus={() => navigate(`/search/${searchInput}`)}
+        ref={reference}
       />
       {searchInput && (
         <div

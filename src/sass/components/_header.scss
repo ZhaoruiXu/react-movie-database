@@ -7,12 +7,14 @@ main {
   padding-top: 63.38px;
 }
 
-.header-wrapper {
+header {
   background-color: $dark-grey;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  position: fixed;
+  width: 100%;
+  z-index: 10;
   h1 {
     padding: 0.75rem 1rem;
     a {
@@ -44,7 +46,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 20rem;
+    width: 25rem;
     .search-bar {
       position: relative;
       flex-grow: 1;
@@ -116,16 +118,11 @@ main {
       }
     }
   }
-}
-
-header {
-  position: fixed;
-  width: 100%;
-  z-index: 10;
   .nav-menu {
     position: absolute;
     width: 100%;
-    z-index: 10;
+    height: 154.78px;
+    top: 63.38px;
     background-color: $dark-grey;
     text-align: center;
     overflow: hidden;
@@ -156,5 +153,10 @@ header {
   }
 }
 
-@media (min-width: 50em) {
-}
+// @media (min-width: 50em) {
+//   header{
+//     .nav-menu{
+//       position: static;
+//     }
+//   }
+// }

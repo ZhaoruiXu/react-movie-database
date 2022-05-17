@@ -12,6 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const insideHeader = useRef(null);
   const insideMenuButton = useRef(null);
+  const insideSearchBar = useRef(null);
 
   useEffect(() => {
     const listener = e => {
@@ -35,23 +36,26 @@ const Header = () => {
     };
   }, [insideHeader, dispatch, isNavOpen]);
 
+  const blurSearch = () => {
+    console.log("blur");
+    insideSearchBar.current.blur();
+  };
+
   return (
     <header>
-      <div className='header-wrapper'>
-        <h1>
-          <Link to='/'>
-            <span>.</span>
-            <span>m</span>
-            <span>o</span>
-            <span>v</span>
-            <span>d</span>
-            <span>b</span>
-          </Link>
-        </h1>
-        <div className='search-and-nav-wrapper'>
-          <SearchBar />
-          <MenuButton reference={insideMenuButton} />
-        </div>
+      <h1>
+        <Link to='/'>
+          <span>.</span>
+          <span>m</span>
+          <span>o</span>
+          <span>v</span>
+          <span>d</span>
+          <span>b</span>
+        </Link>
+      </h1>
+      <div className='search-and-nav-wrapper'>
+        <SearchBar reference={insideSearchBar} />
+        <MenuButton reference={insideMenuButton} blurSearch={blurSearch} />
       </div>
       <NavMain reference={insideHeader} />
     </header>
