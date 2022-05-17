@@ -129,8 +129,8 @@ header {
     background-color: $dark-grey;
     text-align: center;
     overflow: hidden;
-    border-bottom-right-radius: 0.35rem;
-    border-bottom-left-radius: 0.35rem;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     transition: height 0.25s ease-out;
     ul {
       list-style-type: none;
@@ -154,4 +154,7 @@ header {
       }
     }
   }
+}
+
+@media (min-width: 50em) {
 }

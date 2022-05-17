@@ -17,7 +17,7 @@ const SearchBar = () => {
   useEffect(() => {
     const updateSearch = () => {
       // store previous search query state value
-      console.log(searchInput, previousSearchQuery.current);
+      // console.log(searchInput, previousSearchQuery.current);
       if (searchInput && searchInput !== previousSearchQuery.current) {
         navigate(`/search/${searchInput}`);
       } else if (searchInput === "" && previousSearchQuery.current !== "") {
@@ -45,6 +45,7 @@ const SearchBar = () => {
         maxLength='16'
         value={searchInput}
         onChange={e => dispatch(updateSearchQuery(e.target.value))}
+        onFocus={() => navigate(`/search/${searchInput}`)}
       />
       {searchInput && (
         <div

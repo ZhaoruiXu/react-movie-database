@@ -15,20 +15,6 @@ export default function footer() {
         <h2>
           <Link to='/'>.MovDB</Link>
         </h2>
-        <div className='social-container'>
-          <p>follow us</p>
-          <div className='social-icons-container'>
-            <a href='https://www.youtube.com/'>
-              <AiFillYoutube />
-            </a>
-            <a href='https://www.instagram.com/'>
-              <AiOutlineInstagram />
-            </a>
-            <a href='https://twitter.com/'>
-              <AiOutlineTwitter />
-            </a>
-          </div>
-        </div>
         <nav className='footer-nav'>
           <ul>
             <div className='nav-links'>
@@ -49,6 +35,20 @@ export default function footer() {
             </div>
           </ul>
         </nav>
+        <div className='social-container'>
+          <p>follow us</p>
+          <div className='social-icons-container'>
+            <a href='https://www.youtube.com/'>
+              <AiFillYoutube />
+            </a>
+            <a href='https://www.instagram.com/'>
+              <AiOutlineInstagram />
+            </a>
+            <a href='https://twitter.com/'>
+              <AiOutlineTwitter />
+            </a>
+          </div>
+        </div>
         <div className='disclaimer-and-copyright'>
           <p>for educational purposes only</p>
           <p>
