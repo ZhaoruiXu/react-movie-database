@@ -1,9 +1,13 @@
 .movies-container {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   gap: 1rem;
-  justify-items: center;
+  padding: 0 1rem;
+  max-width: 100rem;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   .movie-card {
     background-color: $dark-grey;
     display: flex;
@@ -34,7 +38,8 @@
           fill: $white;
         }
       }
-      &:hover .fav-button-svg {
+      &:hover .fav-button-svg,
+      &:focus .fav-button-svg {
         stroke: $white;
         stroke-width: 75;
       }
@@ -51,29 +56,7 @@
         position: absolute;
         z-index: 1;
         inset: 0;
-        // background: rgb(40, 40, 40);
-        // background: linear-gradient(
-        //   180deg,
-        //   rgba(40, 40, 40, 0) 47%,
-        //   rgba(40, 40, 40, 0.08029149159663862) 81%,
-        //   rgba(40, 40, 40, 0.6909357492997199) 100%
-        // );
-
-        // background: rgb(40, 40, 40);
-        // background: linear-gradient(
-        //   180deg,
-        //   rgba(40, 40, 40, 0.10690213585434172) 15%,
-        //   rgba(40, 40, 40, 0.08029149159663862) 81%,
-        //   rgba(40, 40, 40, 0.6909357492997199) 100%
-        // );
-
         background: rgb(40, 40, 40);
-        // background: linear-gradient(
-        //   180deg,
-        //   rgba(40, 40, 40, 0.20774247198879547) 7%,
-        //   rgba(40, 40, 40, 0.05368084733893552) 79%,
-        //   rgba(40, 40, 40, 0.6909357492997199) 100%
-        // );
         background: linear-gradient(
           180deg,
           rgba(40, 40, 40, 0.25) 5%,
@@ -106,6 +89,9 @@
       .movie-title {
         font-weight: 500;
         margin: 0.5rem 0.75rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .movie-genre-contaniner {
         display: flex;
@@ -114,8 +100,8 @@
         .movie-genre {
           background-color: $light-grey;
           border-radius: 0.5rem;
-          padding: 0.1rem 0.35rem;
-          margin: 0 0.15rem;
+          padding: 0.1rem 0.5rem;
+          margin: 0 0.25rem;
           font-weight: 300;
           font-size: 1rem;
         }

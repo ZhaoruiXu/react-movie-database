@@ -55,9 +55,9 @@ export default function MovieCard({ movieId }) {
   };
 
   const processMovTitle = movTitle => {
-    if (movTitle.length > 28) {
-      return `${movTitle.substr(0, 28)} ...`;
-    }
+    // if (movTitle.length > 28) {
+    //   return `${movTitle.substr(0, 28)} ...`;
+    // }
     return movTitle;
   };
 
@@ -79,8 +79,8 @@ export default function MovieCard({ movieId }) {
   };
 
   const processMovGenre = movGenres => {
-    if (movGenres.length > 3) {
-      movGenres = movGenres.slice(0, 3);
+    if (movGenres.length > 2) {
+      movGenres = movGenres.slice(0, 2);
     }
     return movGenres.map(oneMovGenre => {
       return (
@@ -107,7 +107,7 @@ export default function MovieCard({ movieId }) {
       </div>
       <div className='movie-info'>
         <h3 className='movie-title'>
-          {movieObj.title && processMovTitle(movieObj.title)}
+          {movieObj.title ? movieObj.title : null}
         </h3>
         <p className='movie-run-time'>
           {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
@@ -118,7 +118,7 @@ export default function MovieCard({ movieId }) {
             : null}
         </p>
         <div className='movie-genre-contaniner'>
-          {movieObj.genres && processMovGenre(movieObj.genres)}
+          {movieObj.genres ? processMovGenre(movieObj.genres) : null}
         </div>
       </div>
       <FavButton

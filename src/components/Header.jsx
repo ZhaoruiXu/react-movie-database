@@ -48,8 +48,10 @@ const Header = () => {
             <span>b</span>
           </Link>
         </h1>
-        <SearchBar />
-        <MenuButton reference={insideMenuButton} />
+        <div className='search-and-nav-wrapper'>
+          <SearchBar />
+          <MenuButton reference={insideMenuButton} />
+        </div>
       </div>
       <NavMain reference={insideHeader} />
     </header>

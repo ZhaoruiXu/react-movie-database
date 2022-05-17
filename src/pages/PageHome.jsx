@@ -25,7 +25,7 @@ const PageHome = () => {
 
   return (
     <section className='home-page'>
-      <h2>Home Page</h2>
+      <h2 className='screen-reader-text'>Home Page</h2>
       <CategoryBar />
       {moviesDataByCategory.resutls !== false && (
         <Movies moviesData={moviesDataByCategory.results} />
