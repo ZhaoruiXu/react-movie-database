@@ -1,12 +1,3 @@
-.wrapper {
-  background-color: $medium-grey;
-  // min-height: 100vh;
-}
-
-main {
-  padding-top: 63.38px;
-}
-
 header {
   background-color: $dark-grey;
   display: flex;
@@ -16,6 +7,7 @@ header {
   position: fixed;
   width: 100%;
   z-index: 10;
+
   h1 {
     flex-grow: 1;
     padding: 0.75rem 1rem;
@@ -44,11 +36,12 @@ header {
       color: $white;
     }
   }
+
   .search-and-nav-wrapper {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 20rem;
+    width: 25rem;
     .search-bar {
       position: relative;
       flex-grow: 1;

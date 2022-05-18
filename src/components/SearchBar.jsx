@@ -41,7 +41,7 @@ const SearchBar = ({ reference }) => {
       </div>
       <input
         type='text'
-        placeholder='Search a movie'
+        placeholder='Search for a movie by title'
         maxLength='16'
         value={searchInput}
         onChange={e => dispatch(updateSearchQuery(e.target.value))}

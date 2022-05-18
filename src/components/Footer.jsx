@@ -18,15 +18,16 @@ export default function footer() {
         <nav className='footer-nav'>
           <ul>
             <div className='valid nav-links'>
-              <NavLink to='/'>
-                <li>home</li>
-              </NavLink>
-              <NavLink to='/about'>
-                <li>about</li>
-              </NavLink>
-              <NavLink to='favourites'>
-                <li>favourites</li>
-              </NavLink>
+              <li>
+                {" "}
+                <NavLink to='/'>home</NavLink>
+              </li>
+              <li>
+                <NavLink to='/about'>about</NavLink>
+              </li>
+              <li>
+                <NavLink to='favourites'>favourites</NavLink>
+              </li>
             </div>
             <div className='invalid nav-links'>
               <li>help</li>

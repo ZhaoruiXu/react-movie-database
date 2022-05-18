@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import noPoster from "../images/no-movie-poster.jpg";
-import { endPointGetPoster, API_KEY } from "../globals/globals";
+import { endPointGetW500Img, API_KEY } from "../globals/globals";
 import FavButton from "../components/FavButton";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
 
@@ -93,38 +93,70 @@ export default function MovieCard({ movieId }) {
 
   return (
     <div onClick={handleMovieClick} className='movie-card'>
-      <div className='movie-poster'>
-        {movieObj.poster_path === null ? (
-          <img src={noPoster} alt='No poster avaliable' />
-        ) : (
-          movieObj.poster_path !== undefined && (
-            <img
-              src={endPointGetPoster + movieObj.poster_path}
-              alt={movieObj.title}
-            />
-          )
-        )}
-      </div>
-      <div className='movie-info'>
-        <h3 className='movie-title'>
-          {movieObj.title ? movieObj.title : null}
-        </h3>
-        <p className='movie-run-time'>
-          {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
-        </p>
-        <p className='movie-rating'>
-          {movieObj.vote_average
-            ? processMovRating(movieObj.vote_average)
-            : null}
-        </p>
-        <div className='movie-genre-contaniner'>
-          {movieObj.genres ? processMovGenre(movieObj.genres) : null}
+      <div className='default-movie-card'>
+        <div className='movie-poster'>
+          {movieObj.poster_path === null ? (
+            <img src={noPoster} alt='No poster avaliable' />
+          ) : (
+            movieObj.poster_path !== undefined && (
+              <img
+                src={endPointGetW500Img + movieObj.poster_path}
+                alt={movieObj.title}
+              />
+            )
+          )}
         </div>
+        <div className='movie-info'>
+          <h3 className='movie-title'>
+            {movieObj.title ? movieObj.title : null}
+          </h3>
+          <p className='movie-run-time'>
+            {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
+          </p>
+          <p className='movie-rating'>
+            {movieObj.vote_average
+              ? processMovRating(movieObj.vote_average)
+              : null}
+          </p>
+          <div className='movie-genre-contaniner'>
+            {movieObj.genres ? processMovGenre(movieObj.genres) : null}
+          </div>
+        </div>
+        <FavButton
+          handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
+          isFav={isFav}
+        />
       </div>
-      <FavButton
-        handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
-        isFav={isFav}
-      />
+
+      {/* <div className='hovered-movie-card'>
+        <div className='movie-backdrop'>
+          {movieObj.backdrop_path === null ? (
+            <img src={noPoster} alt='No backdrop avaliable' />
+          ) : (
+            movieObj.backdrop_path !== undefined && (
+              <img
+                src={endPointGetW500Img + movieObj.backdrop_path}
+                alt={movieObj.title}
+              />
+            )
+          )}
+        </div>
+
+        <div className='movie-info'>
+          <p className='movie-released-date'>
+            {movieObj.release ? processMovRating(movieObj.vote_average) : null}
+          </p>
+
+          <p className='movie-rating'>
+            {movieObj.vote_average
+              ? processMovRating(movieObj.vote_average)
+              : null}
+          </p>
+          <div className='movie-genre-contaniner'>
+            {movieObj.genres ? processMovGenre(movieObj.genres) : null}
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 }

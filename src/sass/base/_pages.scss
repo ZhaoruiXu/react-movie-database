@@ -1,0 +1,53 @@
+section {
+  h2 {
+    color: $rose-red;
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+}
+
+.about-page {
+  .about-content {
+    margin: 0 auto;
+    padding: 0 1rem;
+    color: $white;
+    max-width: 40rem;
+    p {
+      margin: 1rem 0;
+      text-align: left;
+      font-weight: 200;
+    }
+    a {
+      text-decoration: none;
+      color: $yellow;
+    }
+    img {
+      width: 7rem;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (min-width: 50em) {
+  section {
+    h2 {
+      margin: 1.5rem 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+  }
+  .about-page {
+    .about-content {
+      margin-bottom: 2rem;
+      p {
+        font-size: 1.25rem;
+      }
+      img {
+        width: 10rem;
+      }
+    }
+  }
+}

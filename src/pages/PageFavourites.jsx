@@ -12,7 +12,7 @@ const PageFavourites = () => {
 
   return (
     <section className='favourites-page'>
-      <h2>Favourites Page</h2>
+      <h2>favourites</h2>
       <Movies moviesData={favs} />
     </section>
   );
