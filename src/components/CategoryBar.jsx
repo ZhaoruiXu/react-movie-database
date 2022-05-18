@@ -29,25 +29,26 @@ export default function CategoryBar() {
     return categoryName;
   };
 
-  const handleCategoryClick = movieCategory => {
-    dispatch(updateCategory(movieCategory));
+  const handleCategoryChange = e => {
+    dispatch(updateCategory(e.target.value));
   };
 
   return (
-    <div className='movie-category-container'>
-      {movieCategories.map((movieCategory, index) => {
-        return (
-          <div
-            className='movie-category'
-            style={{
-              color: selectedCategory === movieCategory ? "red" : "black",
-            }}
-            key={index}
-            onClick={() => handleCategoryClick(movieCategory)}>
-            {convertCategoryName(movieCategory)}
-          </div>
-        );
-      })}
-    </div>
+    <form className='movie-category-container'>
+      <select
+        name='selectCategory'
+        id='selectCategory'
+        className='select-movie-category'
+        value={selectedCategory}
+        onChange={handleCategoryChange}>
+        {movieCategories.map((movieCategory, index) => {
+          return (
+            <option key={index} value={movieCategory}>
+              {convertCategoryName(movieCategory)}
+            </option>
+          );
+        })}
+      </select>
+    </form>
   );
 }

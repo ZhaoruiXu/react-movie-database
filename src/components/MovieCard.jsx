@@ -54,12 +54,12 @@ export default function MovieCard({ movieId }) {
     }
   };
 
-  const processMovTitle = movTitle => {
-    // if (movTitle.length > 28) {
-    //   return `${movTitle.substr(0, 28)} ...`;
-    // }
-    return movTitle;
-  };
+  // const processMovTitle = movTitle => {
+  //   // if (movTitle.length > 28) {
+  //   //   return `${movTitle.substr(0, 28)} ...`;
+  //   // }
+  //   return movTitle;
+  // };
 
   const processMovRuntime = totalMinutes => {
     const minutes = totalMinutes % 60;

@@ -29,24 +29,32 @@ footer {
         list-style-type: none;
         padding: 0;
         margin: 0;
-        li {
-          color: $lightest-grey;
-          font-size: 1rem;
-          font-weight: 300;
-          text-decoration: none;
-          display: inline-block;
-          margin: 0.25rem;
-          text-transform: capitalize;
-          transition: color 0.15s ease-out;
-          &:hover,
-          &:focus {
-            color: $white;
-          }
-        }
         .nav-links {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          color: $lightest-grey;
+          font-size: 1rem;
+          font-weight: 300;
+          text-decoration: none;
+          text-transform: capitalize;
+          &.valid {
+            a {
+              color: $lightest-grey;
+              text-decoration: none;
+              margin: 0.25rem;
+              transition: color 0.15s ease-out;
+              &:hover,
+              &:focus {
+                color: $white;
+              }
+            }
+          }
+          &.invalid {
+            li {
+              margin: 0.25rem;
+            }
+          }
         }
       }
     }
@@ -60,16 +68,17 @@ footer {
         align-items: center;
         max-width: 4.175rem;
         margin-top: 0.5rem;
-        svg {
-          fill: $light-grey;
-          transition: fill 0.15s ease-out;
-          width: 1.25rem;
-          height: 1.25rem;
+        a {
           margin-right: 1rem;
-          &:hover,
-          &:focus {
+          svg {
+            fill: $light-grey;
+            transition: fill 0.15s ease-out;
+            width: 1.25rem;
+            height: 1.25rem;
+          }
+          &:hover svg,
+          &:focus svg {
             fill: $rose-red;
-            cursor: pointer;
           }
         }
       }
@@ -106,14 +115,22 @@ footer {
       .footer-nav {
         ul {
           grid-template-columns: 1fr;
-          li {
-            font-size: 1.25rem;
-            margin: 0rem 0.75rem;
-          }
           .nav-links {
             flex-direction: row;
-            &:first-child {
+            font-size: 1.15rem;
+            &.valid {
               margin-bottom: 0.5rem;
+              a {
+                margin: 0;
+                li {
+                  margin: 0rem 1.25rem;
+                }
+              }
+            }
+            &.invalid {
+              li {
+                margin: 0rem 1.25rem;
+              }
             }
           }
         }
@@ -126,11 +143,11 @@ footer {
         .social-icons-container {
           margin-top: 0;
           a {
-            margin-right: 0.5rem;
+            margin-right: 0.25rem;
             svg {
               margin-right: 0;
-              width: 1.5rem;
-              height: 1.5rem;
+              width: 1.25rem;
+              height: 1.25rem;
             }
           }
         }
@@ -140,7 +157,7 @@ footer {
           font-size: 1rem;
           margin: 0;
           &:first-child {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
           }
         }
       }

@@ -52,12 +52,12 @@ const Header = () => {
           <span>b</span>
         </Link>
       </h1>
-      <NavMain reference={insideHeader} />
+      {/* <NavMain reference={insideHeader} /> */}
       <div className='search-and-nav-wrapper'>
         <SearchBar reference={insideSearchBar} />
         <MenuButton reference={insideMenuButton} blurSearch={blurSearch} />
       </div>
-      {/* <NavMain reference={insideHeader} /> */}
+      <NavMain reference={insideHeader} />
     </header>
   );
 };

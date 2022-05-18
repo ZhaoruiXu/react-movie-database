@@ -17,7 +17,7 @@ export default function footer() {
         </h2>
         <nav className='footer-nav'>
           <ul>
-            <div className='nav-links'>
+            <div className='valid nav-links'>
               <NavLink to='/'>
                 <li>home</li>
               </NavLink>
@@ -28,7 +28,7 @@ export default function footer() {
                 <li>favourites</li>
               </NavLink>
             </div>
-            <div className='nav-links'>
+            <div className='invalid nav-links'>
               <li>help</li>
               <li>contact</li>
               <li>site map</li>
