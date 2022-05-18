@@ -1,6 +1,6 @@
 .wrapper {
   background-color: $medium-grey;
-  min-height: 100vh;
+  // min-height: 100vh;
 }
 
 main {
@@ -16,6 +16,7 @@ header {
   width: 100%;
   z-index: 10;
   h1 {
+    flex-grow: 1;
     padding: 0.75rem 1rem;
     a {
       text-decoration: none;
@@ -121,7 +122,8 @@ header {
   .nav-menu {
     position: absolute;
     width: 100%;
-    height: 154.78px;
+    // height: 154.78px;
+    height: 0;
     top: 63.38px;
     background-color: $dark-grey;
     text-align: center;
@@ -150,13 +152,45 @@ header {
         }
       }
     }
+    &.expand-nav-menu {
+      height: 154.78px;
+    }
   }
 }
 
-// @media (min-width: 50em) {
-//   header{
-//     .nav-menu{
-//       position: static;
-//     }
-//   }
-// }
+@media (min-width: 50em) {
+  header {
+    h1 {
+      padding: 0.75rem 0;
+      margin-left: 10%;
+    }
+    .nav-menu {
+      position: static;
+      height: auto;
+      background-color: transparent;
+      border: none;
+      overflow: visible;
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        a {
+          margin-right: 4rem;
+          &:hover,
+          &:focus {
+            color: $white;
+            li {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+    .search-and-nav-wrapper {
+      margin-right: 10%;
+      .menu-button {
+        display: none;
+      }
+    }
+  }
+}

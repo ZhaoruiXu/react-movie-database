@@ -119,9 +119,9 @@ footer {
         }
       }
       .social-container {
-        font-size: 1.25rem;
+        font-size: 1rem;
         p {
-          margin-bottom: 0.25rem;
+          margin-bottom: 0.75rem;
         }
         .social-icons-container {
           margin-top: 0;
@@ -136,10 +136,12 @@ footer {
         }
       }
       .disclaimer-and-copyright {
-        // align-self: flex-end;
         p {
           font-size: 1rem;
           margin: 0;
+          &:first-child {
+            margin-bottom: 0.75rem;
+          }
         }
       }
     }
