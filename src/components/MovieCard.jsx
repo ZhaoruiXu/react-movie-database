@@ -114,7 +114,8 @@ export default function MovieCard({ movieId }) {
       // onMouseOver={handleMovieMouseOver}
       // onMouseOut={handleMovieMouseOut}
       onClick={handleMovieClick}
-      className='movie-card'>
+      className='movie-card'
+      tabIndex={0}>
       <div className='default-movie-card'>
         <div className='movie-poster'>
           {movieObj.poster_path === null ? (

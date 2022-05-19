@@ -5,7 +5,6 @@ export default function FavButton({ handleFavButtonClick, isFav }) {
     <button className='fav-button' onClick={handleFavButtonClick}>
       <AiFillHeart
         className={`fav-button-svg ${isFav ? "fav-button-on" : ""}`}
-        // style={{ fill: isFav ? "red" : "white" }}
       />
     </button>
   );

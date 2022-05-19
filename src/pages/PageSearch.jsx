@@ -26,21 +26,30 @@ const PageSearch = () => {
       };
       fetchMoviesByQuery();
     }
-  }, [query]);
+  }, [query, dispatch]);
 
   return (
     <section className='search-page'>
-      <h2>Search</h2>
-      <p>
+      {/* <h2>Search Results</h2> */}
+      {/* <p>
         Number of Search Results:{" "}
         {moviesDataByQuery.results !== undefined &&
           moviesDataByQuery.results.length}
-      </p>
+      </p> */}
+
+      {moviesDataByQuery.results !== undefined &&
+      moviesDataByQuery.results.length > 0 ? (
+        <h2>Search Results</h2>
+      ) : (
+        <h2> No Search Results</h2>
+      )}
+
       {moviesDataByQuery.results !== undefined &&
         (moviesDataByQuery.results.length > 0 ? (
           <Movies moviesData={moviesDataByQuery.results} />
         ) : (
-          <div>
+          <div className='no-search-result-message'>
+            <p>\(o_o)?</p>
             <p>Sorry, please try another search</p>
           </div>
         ))}
