@@ -42,7 +42,6 @@ const SearchBar = ({ reference }) => {
       <input
         type='text'
         placeholder='Search for a movie by title'
-        maxLength='16'
         value={searchInput}
         onChange={e => dispatch(updateSearchQuery(e.target.value))}
         onFocus={() => navigate(`/search/${searchInput}`)}

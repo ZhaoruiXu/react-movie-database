@@ -9,7 +9,7 @@ const PageHome = () => {
   const movieCategory = useSelector(state => state.cats.item);
 
   useEffect(() => {
-    document.title = `${appTitle} | Home`;
+    document.title = `${appTitle} - Home`;
 
     if (movieCategory) {
       const fetchMoviesByCategory = async () => {

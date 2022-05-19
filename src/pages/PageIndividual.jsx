@@ -40,7 +40,7 @@ const PageIndividual = () => {
   }, [id]);
 
   useEffect(() => {
-    document.title = `${appTitle} | ${movieObj.title}`;
+    document.title = `${appTitle} - ${movieObj.title}`;
     const isFav = favs.some(obj => obj.id === movieObj.id);
     setIsFave(isFav);
   }, [movieObj, favs]);

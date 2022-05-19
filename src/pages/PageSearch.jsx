@@ -12,7 +12,7 @@ const PageSearch = () => {
   const [moviesDataByQuery, setMoviesDataByQuery] = useState(false);
 
   useEffect(() => {
-    document.title = `${appTitle} | Search`;
+    document.title = `${appTitle} - Search`;
 
     if (query) {
       dispatch(updateSearchQuery(query));
@@ -30,7 +30,7 @@ const PageSearch = () => {
 
   return (
     <section className='search-page'>
-      <h2>Search Page</h2>
+      <h2>Search</h2>
       <p>
         Number of Search Results:{" "}
         {moviesDataByQuery.results !== undefined &&

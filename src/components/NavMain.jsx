@@ -30,13 +30,13 @@ export default function NavMain({ reference }) {
         dispatch(updateNavState(false));
       }}>
       <ul>
-        <NavLink to='/'>
+        <NavLink to='/' tabIndex={isNavOpen ? 0 : -1}>
           <li>Home</li>
         </NavLink>
-        <NavLink to='/about'>
+        <NavLink to='/about' tabIndex={isNavOpen ? 0 : -1}>
           <li>About</li>
         </NavLink>
-        <NavLink to='favourites'>
+        <NavLink to='favourites' tabIndex={isNavOpen ? 0 : -1}>
           <li>Favourites</li>
         </NavLink>
       </ul>

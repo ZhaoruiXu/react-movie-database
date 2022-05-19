@@ -4,7 +4,7 @@ import TMDBLogo from "../images/tmdb-logo.svg";
 
 const PageAbout = () => {
   useEffect(() => {
-    document.title = `${appTitle} | About`;
+    document.title = `${appTitle} - About`;
   }, []);
 
   return (
