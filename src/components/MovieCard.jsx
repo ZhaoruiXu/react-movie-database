@@ -85,17 +85,17 @@ export default function MovieCard({ movieId }) {
     if (!latchOpen) {
       //if was not clicked
       // When clicking the fav button, don't change the card open state
-      setCardOpen(false);
+      setCardOpen(cardOpen);
     }
   };
 
-  // const handleMovieFocus = () => {
-  //   setIsHovered(true);
-  // };
+  const handleMovieCardFocus = () => {
+    setCardOpen(true);
+  };
 
-  // const handleMovieBlur = () => {
-  //   setIsHovered(false);
-  // };
+  const handleMovieCardBlur = () => {
+    setCardOpen(false);
+  };
 
   const handleMoreInfoBtnClick = () => {
     navigate(`/movie/${movieObj.id}`);
@@ -180,6 +180,8 @@ export default function MovieCard({ movieId }) {
         <FavButton
           handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
           isFav={isFav}
+          handleFavButtonFocus={handleMovieCardFocus}
+          handleFavButtonBlur={handleMovieCardBlur}
         />
       </div>
 
@@ -219,6 +221,8 @@ export default function MovieCard({ movieId }) {
         <MoreInfoButton
           handleMoreInfoBtnClick={handleMoreInfoBtnClick}
           isCardOpen={cardOpen}
+          handleMovieCardFocus={handleMovieCardFocus}
+          handleMovieCardBlur={handleMovieCardBlur}
         />
       </div>
     </div>
