@@ -7,7 +7,6 @@ header {
   position: fixed;
   width: 100%;
   z-index: 10;
-
   h1 {
     flex-grow: 1;
     padding: 0.75rem 1rem;
@@ -136,6 +135,9 @@ header {
         font-size: 1.15rem;
         font-weight: 300;
         text-decoration: none;
+        &.active {
+          color: $white;
+        }
         li {
           padding: 0.75rem 0;
         }

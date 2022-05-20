@@ -2,7 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import noPoster from "../images/no-movie-poster.jpg";
-import { endPointGetW500Img, API_KEY } from "../globals/globals";
+import {
+  endPointGetW500Poster,
+  endPointGetW300BackDrop,
+  API_KEY,
+} from "../globals/globals";
 import FavButton from "../components/FavButton";
 import MoreInfoButton from "../components/MoreInfoButton";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
@@ -10,7 +14,10 @@ import { addFav, deleteFav } from "../features/favs/favsSlice";
 export default function MovieCard({ movieId }) {
   const [movieObj, setMovieObj] = useState(false);
   const [isFav, setIsFave] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  // hovered state movie card
+  const [cardOpen, setCardOpen] = useState(false);
+  // latch is whether the movie card is physically clicked
+  const [latchOpen, setLatchOpen] = useState(false);
   // navigate to another page view
   const navigate = useNavigate();
   // redux dispatch action
@@ -41,20 +48,29 @@ export default function MovieCard({ movieId }) {
   }, [movieId, favs]);
 
   const handleMovieClick = () => {
-    setIsHovered(!isHovered);
+    if (latchOpen) {
+      // was clicked on, then click it off
+      setCardOpen(false);
+    } else {
+      // if was not clicked, then click it on
+      setCardOpen(true);
+    }
+    setLatchOpen(!latchOpen);
   };
 
-  const handleMoreInfoBtnClick = () => {
-    navigate(`/movie/${movieObj.id}`);
+  const handleMovieMouseEnter = () => {
+    if (!latchOpen) {
+      // if was not clicked, then hover it on
+      setCardOpen(true);
+    }
   };
-  // const handleMovieMouseOver = () => {
-  //   // navigate(`/movie/${movieObj.id}`);
-  //   setIsHovered(true);
-  // };
 
-  // const handleMovieMouseOut = () => {
-  //   setIsHovered(false);
-  // };
+  const handleMovieMouseLeave = () => {
+    if (!latchOpen) {
+      // if was not clicked, then hover it off
+      setCardOpen(false);
+    }
+  };
 
   const handleFavButtonClick = (e, movieObj) => {
     // stop clicking through the fav button
@@ -66,11 +82,28 @@ export default function MovieCard({ movieId }) {
       dispatch(addFav(movieObj));
       //add to localStorage and redux store
     }
+    if (!latchOpen) {
+      //if was not clicked
+      // When clicking the fav button, don't change the card open state
+      setCardOpen(false);
+    }
+  };
+
+  // const handleMovieFocus = () => {
+  //   setIsHovered(true);
+  // };
+
+  // const handleMovieBlur = () => {
+  //   setIsHovered(false);
+  // };
+
+  const handleMoreInfoBtnClick = () => {
+    navigate(`/movie/${movieObj.id}`);
   };
 
   const processMovOverview = movOverview => {
-    if (movOverview.length > 125) {
-      return `${movOverview.substr(0, 125)} ...`;
+    if (movOverview.length > 150) {
+      return `${movOverview.substr(0, 150)} ...`;
     }
     return movOverview;
   };
@@ -111,11 +144,10 @@ export default function MovieCard({ movieId }) {
 
   return (
     <div
-      // onMouseOver={handleMovieMouseOver}
-      // onMouseOut={handleMovieMouseOut}
       onClick={handleMovieClick}
-      className='movie-card'
-      tabIndex={0}>
+      onMouseEnter={handleMovieMouseEnter}
+      onMouseLeave={handleMovieMouseLeave}
+      className={`movie-card ${cardOpen ? "is-hovered" : ""}`}>
       <div className='default-movie-card'>
         <div className='movie-poster'>
           {movieObj.poster_path === null ? (
@@ -123,7 +155,7 @@ export default function MovieCard({ movieId }) {
           ) : (
             movieObj.poster_path !== undefined && (
               <img
-                src={endPointGetW500Img + movieObj.poster_path}
+                src={endPointGetW500Poster + movieObj.poster_path}
                 alt={movieObj.title}
               />
             )
@@ -150,39 +182,45 @@ export default function MovieCard({ movieId }) {
           isFav={isFav}
         />
       </div>
-      {isHovered && (
-        <div className='hovered-movie-card'>
-          <div className='movie-backdrop'>
-            {movieObj.backdrop_path === null ? (
-              <img src={noPoster} alt='No backdrop avaliable' />
-            ) : (
-              movieObj.backdrop_path !== undefined && (
-                <img
-                  src={endPointGetW500Img + movieObj.backdrop_path}
-                  alt={movieObj.title}
-                />
-              )
-            )}
-          </div>
-          <div className='movie-info'>
-            <p className='movie-released-date'>
-              {movieObj.release_date
-                ? processMovReleaseDate(movieObj.release_date)
-                : null}
-            </p>
-            <p className='movie-rating'>
-              {movieObj.vote_average
-                ? processMovRating(movieObj.vote_average)
-                : null}
-            </p>
-            <div className='movie-overview'>
-              <h3>Overview:</h3>
-              {movieObj.overview ? processMovOverview(movieObj.overview) : null}
-            </div>
-          </div>
-          <MoreInfoButton handleMoreInfoBtnClick={handleMoreInfoBtnClick} />
+
+      <div className={`hovered-movie-card ${cardOpen ? "is-hovered" : ""}`}>
+        <div className='movie-backdrop'>
+          {movieObj.backdrop_path === null ? (
+            <img src={noPoster} alt='No backdrop avaliable' />
+          ) : (
+            movieObj.backdrop_path !== undefined && (
+              <img
+                className='backdrop-img'
+                src={endPointGetW500Poster + movieObj.backdrop_path}
+                alt={movieObj.title}
+              />
+            )
+          )}
         </div>
-      )}
+        <div className='movie-info'>
+          <p className='movie-released-date'>
+            {movieObj.release_date
+              ? processMovReleaseDate(movieObj.release_date)
+              : null}
+          </p>
+          <p className='movie-rating'>
+            {movieObj.vote_average
+              ? processMovRating(movieObj.vote_average)
+              : null}
+          </p>
+          <div className='movie-overview'>
+            <h3>Overview:</h3>
+            <p>
+              {movieObj.overview ? processMovOverview(movieObj.overview) : null}
+            </p>
+          </div>
+        </div>
+
+        <MoreInfoButton
+          handleMoreInfoBtnClick={handleMoreInfoBtnClick}
+          isCardOpen={cardOpen}
+        />
+      </div>
     </div>
   );
 }

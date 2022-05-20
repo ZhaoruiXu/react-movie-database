@@ -9,7 +9,7 @@ const PageAbout = () => {
 
   return (
     <section className='about-page'>
-      <h2>about us</h2>
+      <h2>about</h2>
       <div className='about-content'>
         <p>
           .MovDb is an online movie database where you can browse for your
@@ -25,12 +25,12 @@ const PageAbout = () => {
           button, you can build your own movie list.
         </p>
         <p>
-          .MovDb uses{" "}
+          *This product uses the
           <a href='https://developers.themoviedb.org/3/getting-started/introduction'>
             {" "}
             TMDB (the movie database) API{" "}
           </a>{" "}
-          for all the movie data.
+          but is not endorsed or certified by TMDB.
         </p>
         <img src={TMDBLogo} alt='TMDB logo' />
       </div>

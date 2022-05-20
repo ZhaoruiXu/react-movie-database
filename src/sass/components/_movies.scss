@@ -11,6 +11,7 @@
 
   .movie-card {
     position: relative;
+
     .default-movie-card {
       background-color: $dark-grey;
       display: flex;
@@ -20,6 +21,8 @@
       width: 18rem;
       height: 33rem;
       cursor: pointer;
+      border-radius: 0.25rem;
+      overflow: hidden;
       .fav-button {
         position: absolute;
         z-index: 9;
@@ -111,6 +114,7 @@
         }
       }
     }
+
     .hovered-movie-card {
       position: absolute;
       z-index: 8;
@@ -120,6 +124,10 @@
       right: -0.5rem;
       color: $white;
       background-color: $black;
+      border-radius: 0.25rem;
+      overflow: hidden;
+      opacity: 0;
+
       .movie-backdrop {
         position: relative;
         img {
@@ -127,6 +135,19 @@
           height: 170.84px;
           object-fit: cover;
         }
+        // .backdrop-img {
+        //   opacity: 0;
+        //   animation: fadein 0.75s forwards;
+        //   animation-delay: 0.5s;
+        //   @keyframes fadein {
+        //     from {
+        //       opacity: 0;
+        //     }
+        //     to {
+        //       opacity: 1;
+        //     }
+        //   }
+        // }
         &::after {
           content: "";
           position: absolute;
@@ -154,8 +175,13 @@
         .movie-rating {
           color: $yellow;
         }
-        h3 {
-          font-weight: 500;
+        .movie-overview {
+          h3 {
+            font-weight: 500;
+          }
+          p {
+            font-size: 1.15rem;
+          }
         }
       }
       .more-info-btn {
@@ -177,6 +203,12 @@
           background-color: $rose-red;
         }
       }
+      &.is-hovered {
+        opacity: 1;
+      }
+    }
+    &.is-hovered .hovered-movie-card {
+      opacity: 1;
     }
   }
 }

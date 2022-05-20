@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   appTitle,
   API_KEY,
-  endPointGetW500Img,
-  endPointGetOriginalImag,
+  endPointGetW500Poster,
+  endPointGetOriginalBackDrop,
 } from "../globals/globals";
 import noPoster from "../images/no-movie-poster.jpg";
 import FavButton from "../components/FavButton";
@@ -61,7 +61,7 @@ const PageIndividual = () => {
         ) : (
           movieObj.poster_path !== undefined && (
             <img
-              src={endPointGetW500Img + movieObj.poster_path}
+              src={endPointGetW500Poster + movieObj.poster_path}
               alt={movieObj.title}
             />
           )
@@ -74,7 +74,7 @@ const PageIndividual = () => {
         ) : (
           movieObj.poster_path !== undefined && (
             <img
-              src={endPointGetOriginalImag + movieObj.backdrop_path}
+              src={endPointGetOriginalBackDrop + movieObj.backdrop_path}
               alt={movieObj.title}
             />
           )

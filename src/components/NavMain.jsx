@@ -18,8 +18,10 @@ export default function NavMain({ reference }) {
         setIsDesktopView(false);
       }
     };
+    window.addEventListener("load", listener);
     window.addEventListener("resize", listener);
     return () => {
+      window.removeEventListener("load", listener);
       window.removeEventListener("resize", listener);
     };
   }, [dispatch]);
