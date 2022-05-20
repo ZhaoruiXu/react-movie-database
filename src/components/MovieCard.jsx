@@ -90,11 +90,17 @@ export default function MovieCard({ movieId }) {
   };
 
   const handleMovieCardFocus = () => {
-    setCardOpen(true);
+    if (!latchOpen) {
+      // if was not clicked, then hover it on
+      setCardOpen(true);
+    }
   };
 
   const handleMovieCardBlur = () => {
-    setCardOpen(false);
+    if (!latchOpen) {
+      // if was not clicked, then hover it off
+      setCardOpen(false);
+    }
   };
 
   const handleMoreInfoBtnClick = () => {
@@ -180,8 +186,6 @@ export default function MovieCard({ movieId }) {
         <FavButton
           handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
           isFav={isFav}
-          handleFavButtonFocus={handleMovieCardFocus}
-          handleFavButtonBlur={handleMovieCardBlur}
         />
       </div>
 

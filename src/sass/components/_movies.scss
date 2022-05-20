@@ -44,9 +44,11 @@
             fill: $white;
           }
         }
-        &:hover .fav-button-svg,
-        &:focus .fav-button-svg {
+        &:hover .fav-button-svg {
           stroke: $white;
+          stroke-width: 75;
+        }
+        &:focus .fav-button-svg {
           stroke-width: 75;
         }
       }
@@ -208,6 +210,15 @@
       }
     }
     &.is-hovered .hovered-movie-card {
+      // animation: fadeIn 0.5s forwards ease-out;
+      // @keyframes fadeIn {
+      //   from {
+      //     opacity: 0;
+      //   }
+      //   to {
+      //     opacity: 1;
+      //   }
+      // }
       opacity: 1;
     }
   }
