@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   appTitle,
   API_KEY,
-  endPointGetW500Poster,
-  endPointGetOriginalBackDrop,
+  endPointGetW500Img,
+  endPointGetOriginalImg,
 } from "../globals/globals";
 import noPoster from "../images/no-movie-poster.jpg";
 import FavButton from "../components/FavButton";
@@ -37,7 +37,7 @@ const PageIndividual = () => {
       };
       fetchMovieObj();
     }
-  }, [id]);
+  }, [id, navigate]);
 
   useEffect(() => {
     document.title = `${appTitle} - ${movieObj.title}`;
@@ -61,7 +61,7 @@ const PageIndividual = () => {
         ) : (
           movieObj.poster_path !== undefined && (
             <img
-              src={endPointGetW500Poster + movieObj.poster_path}
+              src={endPointGetW500Img + movieObj.poster_path}
               alt={movieObj.title}
             />
           )
@@ -74,7 +74,7 @@ const PageIndividual = () => {
         ) : (
           movieObj.poster_path !== undefined && (
             <img
-              src={endPointGetOriginalBackDrop + movieObj.backdrop_path}
+              src={endPointGetOriginalImg + movieObj.backdrop_path}
               alt={movieObj.title}
             />
           )

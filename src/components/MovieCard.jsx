@@ -2,11 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import noPoster from "../images/no-movie-poster.jpg";
-import {
-  endPointGetW500Poster,
-  endPointGetW300BackDrop,
-  API_KEY,
-} from "../globals/globals";
+import { endPointGetW500Img, API_KEY } from "../globals/globals";
 import FavButton from "../components/FavButton";
 import MoreInfoButton from "../components/MoreInfoButton";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
@@ -161,7 +157,7 @@ export default function MovieCard({ movieId }) {
           ) : (
             movieObj.poster_path !== undefined && (
               <img
-                src={endPointGetW500Poster + movieObj.poster_path}
+                src={endPointGetW500Img + movieObj.poster_path}
                 alt={movieObj.title}
               />
             )
@@ -197,7 +193,7 @@ export default function MovieCard({ movieId }) {
             movieObj.backdrop_path !== undefined && (
               <img
                 className='backdrop-img'
-                src={endPointGetW500Poster + movieObj.backdrop_path}
+                src={endPointGetW500Img + movieObj.backdrop_path}
                 alt={movieObj.title}
               />
             )
