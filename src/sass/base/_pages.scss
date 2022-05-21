@@ -24,6 +24,19 @@ section {
 }
 
 .search-page {
+  padding-bottom: 2rem;
+  &.center {
+    width: 100%;
+    height: calc(100vh - 63.38px - 178.38px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      margin-top: 0;
+    }
+  }
   .no-search-result-message {
     margin: 0 1rem;
     p {
@@ -40,6 +53,9 @@ section {
 
 @media (min-width: 56.25em) {
   .search-page {
+    &.center {
+      height: calc(100vh - 63.38px - 196px);
+    }
     .no-search-result-message {
       p {
         font-size: 1.25rem;
@@ -86,6 +102,7 @@ section {
 
 @media (min-width: 56.25em) {
   .about-page {
+    height: calc(100vh - 63.38px - 196px);
     .about-content {
       margin-bottom: 2rem;
       p {
@@ -140,6 +157,9 @@ section {
 
 @media (min-width: 56.25em) {
   .favourites-page {
+    &.center {
+      height: calc(100vh - 63.38px - 196px);
+    }
     .no-favourites-message {
       p {
         font-size: 1.25rem;

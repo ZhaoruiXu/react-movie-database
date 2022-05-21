@@ -15,7 +15,6 @@ export default function MenuButton({ reference, blurSearch }) {
       onClick={() => {
         dispatch(updateNavState(!isNavOpen));
         blurSearch();
-        console.log("menu click");
       }}>
       <div className={`bar bar1 ${isNavOpen ? "moveDown" : ""}`}></div>
       <div className='bar bar2'></div>

@@ -14,7 +14,7 @@ import PageSearch from "../pages/PageSearch";
 
 function AppRouter() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/.movdb'>
       <div className='wrapper'>
         <Header />
         <main>

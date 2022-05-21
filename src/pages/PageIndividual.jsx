@@ -32,8 +32,7 @@ const PageIndividual = () => {
         const res = await fetch(
           `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
         );
-        if (res.status !== 200) {
-          console.log(res.status);
+        if (!res.ok) {
           navigate("/");
         } else {
           let data = await res.json();

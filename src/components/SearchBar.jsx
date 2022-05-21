@@ -1,14 +1,16 @@
 import { BiSearch } from "react-icons/bi";
 import { TiDelete } from "react-icons/ti";
 import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSearchQuery } from "../features/searchQuery/searchQuerySlice";
 
 const SearchBar = ({ reference }) => {
   const previousSearchQuery = useRef("");
+  const previousPath = useRef("/");
   const searchInput = useSelector(state => state.searchQuery.item);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   // navigate to another page view
   const navigate = useNavigate();
@@ -16,12 +18,10 @@ const SearchBar = ({ reference }) => {
   // auto-update search result
   useEffect(() => {
     const updateSearch = () => {
-      // store previous search query state value
-      // console.log(searchInput, previousSearchQuery.current);
       if (searchInput && searchInput !== previousSearchQuery.current) {
         navigate(`/search/${searchInput}`);
       } else if (searchInput === "" && previousSearchQuery.current !== "") {
-        navigate("/");
+        navigate(previousPath.current);
       }
     };
 
@@ -31,8 +31,15 @@ const SearchBar = ({ reference }) => {
     return () => {
       clearTimeout(timer);
       previousSearchQuery.current = searchInput; // setting previous state to useRef
+      previousPath.current = location.pathname; // setting previous path
     };
-  }, [searchInput]);
+  }, [searchInput, navigate, location]);
+
+  const handleSearchInputFocus = () => {
+    if (searchInput !== "") {
+      navigate(`/search/${searchInput}`);
+    }
+  };
 
   return (
     <div className='search-bar' style={{ width: searchInput && "50%" }}>
@@ -44,7 +51,7 @@ const SearchBar = ({ reference }) => {
         placeholder='Search for a movie by title'
         value={searchInput}
         onChange={e => dispatch(updateSearchQuery(e.target.value))}
-        onFocus={() => navigate(`/search/${searchInput}`)}
+        onFocus={handleSearchInputFocus}
         ref={reference}
       />
       {searchInput && (

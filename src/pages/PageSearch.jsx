@@ -29,7 +29,13 @@ const PageSearch = () => {
   }, [query, dispatch]);
 
   return (
-    <section className='search-page'>
+    <section
+      className={`search-page ${
+        moviesDataByQuery.results !== undefined &&
+        moviesDataByQuery.results.length < 1
+          ? "center"
+          : ""
+      }`}>
       {/* <h2>Search Results</h2> */}
       {/* <p>
         Number of Search Results:{" "}
