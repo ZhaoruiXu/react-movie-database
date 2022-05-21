@@ -51,14 +51,19 @@ header {
         font-weight: 300;
         width: 100%;
         border: none;
-        padding: 0.5rem 25% 0.5rem 25%;
+        padding: 0.5rem 5% 0.5rem 30%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        // outline: none;
         &::placeholder {
           font-weight: 200;
           font-size: 1rem;
           color: $lightest-grey;
+        }
+        &:focus,
+        &:hover {
+          box-shadow: inset 0px 0px 3.5px 0px $light-grey;
         }
       }
       .search-icon {
@@ -82,10 +87,6 @@ header {
           width: 1.25rem;
           height: 1.25rem;
         }
-      }
-      &:hover input[type="text"],
-      &:focus input[type="text"] {
-        box-shadow: inset 0px 0px 3.5px 0px $light-grey;
       }
     }
     .menu-button {
@@ -125,14 +126,13 @@ header {
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     transition: height 0.25s ease-out;
-    // visibility: hidden;
     ul {
       list-style-type: none;
       padding: 0;
       margin: 0;
       a {
         color: $lightest-grey;
-        font-size: 1.15rem;
+        font-size: 1.25rem;
         font-weight: 300;
         text-decoration: none;
         &.active {
@@ -157,14 +157,14 @@ header {
   }
 }
 
-@media (min-width: 50em) {
+@media (min-width: 56.25em) {
   header {
     gap: 2rem;
 
     h1 {
       padding: 0.75rem 0;
       margin-left: 10%;
-      font-size: 2rem;
+      font-size: 2.15rem;
     }
     .nav-menu {
       position: static;
@@ -181,7 +181,10 @@ header {
         align-items: center;
         justify-content: flex-end;
         a {
-          &:first-child,
+          &:first-child {
+            margin-left: 2rem;
+            margin-right: 4rem;
+          }
           &:nth-child(2) {
             margin-right: 4rem;
           }
@@ -196,6 +199,33 @@ header {
       }
     }
     .search-and-nav-wrapper {
+      .search-bar {
+        input[type="text"] {
+          padding: 0.75rem 5% 0.75rem 25%;
+          font-size: 1.15rem;
+          &::placeholder {
+            font-weight: 200;
+            font-size: 1.15rem;
+            color: $lightest-grey;
+          }
+        }
+        .search-icon {
+          svg {
+            width: 1.35rem;
+            height: 1.35rem;
+          }
+        }
+        .search-clear-btn {
+          svg {
+            width: 1.35rem;
+            height: 1.35rem;
+          }
+        }
+        &:hover input[type="text"],
+        &:focus input[type="text"] {
+          box-shadow: inset 0px 0px 3.5px 0px $light-grey;
+        }
+      }
       .menu-button {
         display: none;
       }

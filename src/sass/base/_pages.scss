@@ -1,9 +1,9 @@
 section {
   h2 {
-    color: $rose-red;
+    color: $white;
     text-align: center;
     margin: 1rem 0;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 500;
     text-transform: capitalize;
   }
@@ -24,7 +24,7 @@ section {
   }
 }
 
-@media (min-width: 50em) {
+@media (min-width: 56.25em) {
   .search-page {
     .no-search-result-message {
       p {
@@ -60,12 +60,12 @@ section {
   }
 }
 
-@media (min-width: 50em) {
+@media (min-width: 56.25em) {
   section {
     h2 {
-      margin: 1.5rem 0;
-      font-size: 2.25rem;
-      font-weight: 700;
+      margin: 2rem 0;
+      font-size: 2.15rem;
+      font-weight: 600;
     }
   }
   .about-page {
@@ -108,7 +108,7 @@ section {
   }
 }
 
-@media (min-width: 50em) {
+@media (min-width: 56.25em) {
   .favourites-page {
     .no-favourites-message {
       p {
