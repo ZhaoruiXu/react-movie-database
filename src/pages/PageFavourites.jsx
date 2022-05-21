@@ -14,7 +14,8 @@ const PageFavourites = () => {
   }, []);
 
   return (
-    <section className='favourites-page'>
+    <section
+      className={`favourites-page ${favs && favs.length < 1 && "center"}`}>
       <h2>favourites</h2>
       {favs && favs.length > 0 ? (
         <Movies moviesData={favs} />

@@ -6,11 +6,16 @@ import {
   endPointGetW500Img,
   endPointGetOriginalImg,
 } from "../globals/globals";
-import noPoster from "../images/no-movie-poster.jpg";
+import moviePosterPlaceHolder from "../images/movie-poster-placeholder.svg";
+import movieBackdropPlaceHolder from "../images/movie-backdrop-placeholder.svg";
 import FavButton from "../components/FavButton";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
+
+const numMovGeners = 2;
+const numMovOverviewChar = 150;
+const movRatingDigits = 1;
 
 const PageIndividual = () => {
   const { id } = useParams();
@@ -53,24 +58,52 @@ const PageIndividual = () => {
     }
   };
 
+  const processMovOverview = movOverview => {
+    if (movOverview.length > numMovOverviewChar) {
+      return `${movOverview.substr(0, numMovOverviewChar)} ...`;
+    }
+    return movOverview;
+  };
+
+  const processMovRuntime = totalMinutes => {
+    const minutes = totalMinutes % 60;
+    const hours = Math.floor(totalMinutes / 60);
+    if (hours === 0 && minutes === 0) {
+      return;
+    } else if (hours === 0) {
+      return `${minutes}m`;
+    } else if (minutes === 0) {
+      return `${hours}h`;
+    }
+    return `${hours}h ${minutes}m`;
+  };
+
+  const processMovRating = movRating => {
+    return `${movRating.toFixed(movRatingDigits)} / 10.0`;
+  };
+
+  const processMovGenre = movGenres => {
+    if (movGenres.length > numMovGeners) {
+      movGenres = movGenres.slice(0, numMovGeners);
+    }
+    return movGenres.map(oneMovGenre => {
+      return (
+        <p className='movie-genre' key={oneMovGenre.id}>
+          {oneMovGenre.name}
+        </p>
+      );
+    });
+  };
+
+  const processMovReleaseDate = movReleaseDate => {
+    return movReleaseDate.replaceAll("-", "/");
+  };
+
   return (
     <section className='individual-page'>
-      <div className='movie-poster'>
-        {movieObj.poster_path === null ? (
-          <img src={noPoster} alt='No poster avaliable' />
-        ) : (
-          movieObj.poster_path !== undefined && (
-            <img
-              src={endPointGetW500Img + movieObj.poster_path}
-              alt={movieObj.title}
-            />
-          )
-        )}
-      </div>
-
       <div className='movie-backdrop'>
         {movieObj.backdrop_path === null ? (
-          <img src={noPoster} alt='No backdrop avaliable' />
+          <img src={movieBackdropPlaceHolder} alt='No backdrop avaliable' />
         ) : (
           movieObj.poster_path !== undefined && (
             <img
@@ -81,23 +114,56 @@ const PageIndividual = () => {
         )}
       </div>
 
-      <div className='movie-info'>
-        <h3>{movieObj.title ? movieObj.title : "Title N/A"}</h3>
-        <p>{movieObj.tagline ? movieObj.tagline : "Tagline N/A"}</p>
-        <p>{movieObj.runtime ? movieObj.runtime : "Run Time N/A"}</p>
-        <p>{movieObj.vote_average ? movieObj.vote_average : "Rating N/A"}</p>
-        <p>
-          {movieObj.release_date ? movieObj.release_date : "Release Date N/A"}
-        </p>
-        {movieObj.genres &&
-          movieObj.genres.map(oneMovGenre => {
-            return <p key={oneMovGenre.id}>{oneMovGenre.name}</p>;
-          })}
-      </div>
-      <FavButton
-        handleFavButtonClick={() => handleFavButtonClick(movieObj)}
-        isFav={isFav}
-      />
+      {/* <div className='detail-moive-card'>
+        <div className='movie-poster'>
+          {movieObj.poster_path === null ? (
+            <img src={moviePosterPlaceHolder} alt='No poster avaliable' />
+          ) : (
+            movieObj.poster_path !== undefined && (
+              <img
+                src={endPointGetW500Img + movieObj.poster_path}
+                alt={movieObj.title}
+              />
+            )
+          )}
+        </div>
+
+        <div className='movie-info'>
+          <h3>{movieObj.title ? movieObj.title : null}</h3>
+
+          <p>{movieObj.tagline ? movieObj.tagline : null}</p>
+
+          <p>
+            {movieObj.release_date
+              ? processMovReleaseDate(movieObj.release_date)
+              : null}
+          </p>
+
+          <p>{movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}</p>
+
+          <p>
+            {movieObj.vote_average
+              ? processMovRating(movieObj.vote_average)
+              : null}
+          </p>
+
+          <div className='movie-genre-contaniner'>
+            {movieObj.genres ? processMovGenre(movieObj.genres) : null}
+          </div>
+
+          <div className='movie-overview'>
+            <h3>Overview:</h3>
+            <p>
+              {movieObj.overview ? processMovOverview(movieObj.overview) : null}
+            </p>
+          </div>
+        </div>
+
+        <FavButton
+          handleFavButtonClick={() => handleFavButtonClick(movieObj)}
+          isFav={isFav}
+        />
+      </div> */}
     </section>
   );
 };
