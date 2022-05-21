@@ -1,11 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import noPoster from "../images/no-movie-poster.jpg";
+import moviePosterPlaceHolder from "../images/movie-poster-placeholder.svg";
+import movieBackdropPlaceHolder from "../images/movie-backdrop-placeholder.svg";
 import { endPointGetW500Img, API_KEY } from "../globals/globals";
 import FavButton from "../components/FavButton";
 import MoreInfoButton from "../components/MoreInfoButton";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
+
+const numMovGeners = 2;
+const numMovOverviewChar = 150;
+const movRatingDigits = 1;
 
 export default function MovieCard({ movieId }) {
   const [movieObj, setMovieObj] = useState(false);
@@ -104,8 +109,8 @@ export default function MovieCard({ movieId }) {
   };
 
   const processMovOverview = movOverview => {
-    if (movOverview.length > 150) {
-      return `${movOverview.substr(0, 150)} ...`;
+    if (movOverview.length > numMovOverviewChar) {
+      return `${movOverview.substr(0, numMovOverviewChar)} ...`;
     }
     return movOverview;
   };
@@ -124,12 +129,12 @@ export default function MovieCard({ movieId }) {
   };
 
   const processMovRating = movRating => {
-    return movRating.toFixed(1);
+    return movRating.toFixed(movRatingDigits);
   };
 
   const processMovGenre = movGenres => {
-    if (movGenres.length > 2) {
-      movGenres = movGenres.slice(0, 2);
+    if (movGenres.length > numMovGeners) {
+      movGenres = movGenres.slice(0, numMovGeners);
     }
     return movGenres.map(oneMovGenre => {
       return (
@@ -153,7 +158,7 @@ export default function MovieCard({ movieId }) {
       <div className='default-movie-card'>
         <div className='movie-poster'>
           {movieObj.poster_path === null ? (
-            <img src={noPoster} alt='No poster avaliable' />
+            <img src={moviePosterPlaceHolder} alt='No poster avaliable' />
           ) : (
             movieObj.poster_path !== undefined && (
               <img
@@ -188,7 +193,7 @@ export default function MovieCard({ movieId }) {
       <div className={`hovered-movie-card ${cardOpen ? "is-hovered" : ""}`}>
         <div className='movie-backdrop'>
           {movieObj.backdrop_path === null ? (
-            <img src={noPoster} alt='No backdrop avaliable' />
+            <img src={movieBackdropPlaceHolder} alt='No backdrop avaliable' />
           ) : (
             movieObj.backdrop_path !== undefined && (
               <img
