@@ -13,8 +13,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
 
-const numMovGeners = 2;
-const numMovOverviewChar = 150;
+const numMovGeners = 5;
+// const numMovOverviewChar = 150;
 const movRatingDigits = 1;
 
 const PageIndividual = () => {
@@ -57,11 +57,8 @@ const PageIndividual = () => {
     }
   };
 
-  const processMovOverview = movOverview => {
-    if (movOverview.length > numMovOverviewChar) {
-      return `${movOverview.substr(0, numMovOverviewChar)} ...`;
-    }
-    return movOverview;
+  const handleBackButtonClick = () => {
+    console.log();
   };
 
   const processMovRuntime = totalMinutes => {
@@ -78,7 +75,11 @@ const PageIndividual = () => {
   };
 
   const processMovRating = movRating => {
-    return `${movRating.toFixed(movRatingDigits)} / 10.0`;
+    return (
+      <>
+        <span>{movRating.toFixed(movRatingDigits)}</span> / 10
+      </>
+    );
   };
 
   const processMovGenre = movGenres => {
@@ -100,7 +101,7 @@ const PageIndividual = () => {
 
   return (
     <section className='individual-page'>
-      <div className='movie-backdrop'>
+      {/* <div className='movie-backdrop'>
         {movieObj.backdrop_path === null ? (
           <img src={movieBackdropPlaceHolder} alt='No backdrop avaliable' />
         ) : (
@@ -111,9 +112,9 @@ const PageIndividual = () => {
             />
           )
         )}
-      </div>
+      </div> */}
 
-      {/* <div className='detail-moive-card'>
+      <div className='detail-moive-card'>
         <div className='movie-poster'>
           {movieObj.poster_path === null ? (
             <img src={moviePosterPlaceHolder} alt='No poster avaliable' />
@@ -128,41 +129,59 @@ const PageIndividual = () => {
         </div>
 
         <div className='movie-info'>
-          <h3>{movieObj.title ? movieObj.title : null}</h3>
+          <h3 className='movie-title'>
+            {movieObj.title ? movieObj.title : null}
+          </h3>
 
-          <p>{movieObj.tagline ? movieObj.tagline : null}</p>
-
-          <p>
-            {movieObj.release_date
-              ? processMovReleaseDate(movieObj.release_date)
-              : null}
+          <p className='movie-tagline'>
+            {movieObj.tagline ? movieObj.tagline : null}
           </p>
 
-          <p>{movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}</p>
+          <div className='movie-stats-info'>
+            <p className='movie-released-date'>
+              {movieObj.release_date
+                ? processMovReleaseDate(movieObj.release_date)
+                : null}
+            </p>
 
-          <p>
-            {movieObj.vote_average
-              ? processMovRating(movieObj.vote_average)
-              : null}
-          </p>
+            {movieObj.release_date && movieObj.runtime ? (
+              <span className='info-spacer'> | </span>
+            ) : null}
 
-          <div className='movie-genre-contaniner'>
+            <p className='movie-runtime'>
+              {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
+            </p>
+
+            {movieObj.runtime && movieObj.vote_average ? (
+              <span className='info-spacer'> | </span>
+            ) : null}
+
+            <p className='movie-rating'>
+              {movieObj.vote_average
+                ? processMovRating(movieObj.vote_average)
+                : null}{" "}
+            </p>
+          </div>
+
+          <div className='movie-genre-container'>
             {movieObj.genres ? processMovGenre(movieObj.genres) : null}
           </div>
 
           <div className='movie-overview'>
             <h3>Overview:</h3>
-            <p>
-              {movieObj.overview ? processMovOverview(movieObj.overview) : null}
-            </p>
+            <p>{movieObj.overview ? movieObj.overview : null}</p>
           </div>
         </div>
+
+        <button className='back-button' onClick={handleBackButtonClick}>
+          back
+        </button>
 
         <FavButton
           handleFavButtonClick={() => handleFavButtonClick(movieObj)}
           isFav={isFav}
         />
-      </div> */}
+      </div>
     </section>
   );
 };

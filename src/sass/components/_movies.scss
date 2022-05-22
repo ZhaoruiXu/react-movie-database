@@ -64,7 +64,6 @@
           position: absolute;
           z-index: 1;
           inset: 0;
-          background: rgb(40, 40, 40);
           background: linear-gradient(
             180deg,
             rgba(40, 40, 40, 0.25) 5%,
@@ -101,7 +100,7 @@
           text-overflow: ellipsis;
           white-space: nowrap;
         }
-        .movie-genre-contaniner {
+        .movie-genre-container {
           display: flex;
           flex-wrap: wrap;
           margin: 1rem 0.25rem;
@@ -155,7 +154,6 @@
           position: absolute;
           z-index: 1;
           inset: 0;
-          background: rgb(40, 40, 40);
           background: linear-gradient(
             180deg,
             rgba(40, 40, 40, 0.25) 5%,

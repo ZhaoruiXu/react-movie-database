@@ -180,7 +180,7 @@ export default function MovieCard({ movieId }) {
               ? processMovRating(movieObj.vote_average)
               : null}
           </p>
-          <div className='movie-genre-contaniner'>
+          <div className='movie-genre-container'>
             {movieObj.genres ? processMovGenre(movieObj.genres) : null}
           </div>
         </div>
