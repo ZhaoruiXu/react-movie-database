@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   appTitle,
   API_KEY,
@@ -14,7 +14,6 @@ import { useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
 
 const numMovGeners = 5;
-// const numMovOverviewChar = 150;
 const movRatingDigits = 1;
 
 const PageIndividual = () => {
@@ -23,6 +22,7 @@ const PageIndividual = () => {
   const [isFav, setIsFave] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const favs = useSelector(state => state.favs.items);
 
@@ -41,7 +41,7 @@ const PageIndividual = () => {
       };
       fetchMovieObj();
     }
-  }, [id, navigate]);
+  }, [id, navigate, location]);
 
   useEffect(() => {
     document.title = `${appTitle} - ${movieObj.title}`;
@@ -58,7 +58,8 @@ const PageIndividual = () => {
   };
 
   const handleBackButtonClick = () => {
-    console.log();
+    // go back to previous path
+    navigate(-1);
   };
 
   const processMovRuntime = totalMinutes => {

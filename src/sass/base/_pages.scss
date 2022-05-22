@@ -271,9 +271,6 @@ section {
           margin: 0.5rem 0.5rem 0.5rem 0;
           font-weight: 300;
           font-size: 1rem;
-          // &:first-child {
-          //   margin-left: 0;
-          // }
         }
       }
       .movie-overview {
@@ -299,6 +296,7 @@ section {
       margin: 3rem auto;
       width: 35%;
       transition: background-color 0.075s ease-out;
+      cursor: pointer;
       &:hover,
       &:focus {
         background-color: $rose-red;

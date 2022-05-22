@@ -8,9 +8,9 @@ import { updateSearchQuery } from "../features/searchQuery/searchQuerySlice";
 const SearchBar = ({ reference }) => {
   const previousSearchQuery = useRef("");
   const previousPath = useRef("/");
-  const searchInput = useSelector(state => state.searchQuery.item);
   const dispatch = useDispatch();
   const location = useLocation();
+  const searchInput = useSelector(state => state.searchQuery.item);
 
   // navigate to another page view
   const navigate = useNavigate();
@@ -18,9 +18,12 @@ const SearchBar = ({ reference }) => {
   // auto-update search result
   useEffect(() => {
     const updateSearch = () => {
+      // console.log(location.pathname, previousPath.current);
       if (searchInput && searchInput !== previousSearchQuery.current) {
+        // when there is an actual change in search query string
         navigate(`/search/${searchInput}`);
       } else if (searchInput === "" && previousSearchQuery.current !== "") {
+        // to stay at the same page when clear search query
         navigate(previousPath.current);
       }
     };
@@ -36,7 +39,7 @@ const SearchBar = ({ reference }) => {
   }, [searchInput, navigate, location]);
 
   const handleSearchInputFocus = () => {
-    if (searchInput !== "") {
+    if (searchInput !== "" && searchInput !== previousSearchQuery.current) {
       navigate(`/search/${searchInput}`);
     }
   };

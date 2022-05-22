@@ -198,6 +198,7 @@
         bottom: 2rem;
         width: 40%;
         transition: background-color 0.075s ease-out;
+        cursor: pointer;
         &:hover,
         &:focus {
           background-color: $rose-red;
