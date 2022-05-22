@@ -102,86 +102,85 @@ const PageIndividual = () => {
 
   return (
     <section className='individual-page'>
-      {/* <div className='movie-backdrop'>
-        {movieObj.backdrop_path === null ? (
-          <img src={movieBackdropPlaceHolder} alt='No backdrop avaliable' />
-        ) : (
-          movieObj.poster_path !== undefined && (
-            <img
-              src={endPointGetOriginalImg + movieObj.backdrop_path}
-              alt={movieObj.title}
-            />
-          )
-        )}
-      </div> */}
+      <div
+        className='detail-movie-card-wrapper'
+        style={{
+          backgroundImage:
+            movieObj.backdrop_path !== null &&
+            movieObj.backdrop_path !== undefined
+              ? `url(${endPointGetOriginalImg + movieObj.backdrop_path})`
+              : "none",
+        }}>
+        <div className='detail-moive-card'>
+          <div className='movie-poster-wrapper'>
+            <div className='movie-poster'>
+              {movieObj.poster_path === null ? (
+                <img src={moviePosterPlaceHolder} alt='No poster avaliable' />
+              ) : (
+                movieObj.poster_path !== undefined && (
+                  <img
+                    src={endPointGetW500Img + movieObj.poster_path}
+                    alt={movieObj.title}
+                  />
+                )
+              )}
+            </div>
+          </div>
 
-      <div className='detail-moive-card'>
-        <div className='movie-poster'>
-          {movieObj.poster_path === null ? (
-            <img src={moviePosterPlaceHolder} alt='No poster avaliable' />
-          ) : (
-            movieObj.poster_path !== undefined && (
-              <img
-                src={endPointGetW500Img + movieObj.poster_path}
-                alt={movieObj.title}
-              />
-            )
-          )}
+          <div className='movie-info'>
+            <h3 className='movie-title'>
+              {movieObj.title ? movieObj.title : null}
+            </h3>
+
+            <p className='movie-tagline'>
+              {movieObj.tagline ? movieObj.tagline : null}
+            </p>
+
+            <div className='movie-stats-info'>
+              <p className='movie-released-date'>
+                {movieObj.release_date
+                  ? processMovReleaseDate(movieObj.release_date)
+                  : null}
+              </p>
+
+              {movieObj.release_date && movieObj.runtime ? (
+                <span className='info-spacer'> | </span>
+              ) : null}
+
+              <p className='movie-runtime'>
+                {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
+              </p>
+
+              {movieObj.runtime && movieObj.vote_average ? (
+                <span className='info-spacer'> | </span>
+              ) : null}
+
+              <p className='movie-rating'>
+                {movieObj.vote_average
+                  ? processMovRating(movieObj.vote_average)
+                  : null}{" "}
+              </p>
+            </div>
+
+            <div className='movie-genre-container'>
+              {movieObj.genres ? processMovGenre(movieObj.genres) : null}
+            </div>
+
+            <div className='movie-overview'>
+              <h3>Overview:</h3>
+              <p>{movieObj.overview ? movieObj.overview : null}</p>
+            </div>
+          </div>
+
+          <button className='back-button' onClick={handleBackButtonClick}>
+            back
+          </button>
+
+          <FavButton
+            handleFavButtonClick={() => handleFavButtonClick(movieObj)}
+            isFav={isFav}
+          />
         </div>
-
-        <div className='movie-info'>
-          <h3 className='movie-title'>
-            {movieObj.title ? movieObj.title : null}
-          </h3>
-
-          <p className='movie-tagline'>
-            {movieObj.tagline ? movieObj.tagline : null}
-          </p>
-
-          <div className='movie-stats-info'>
-            <p className='movie-released-date'>
-              {movieObj.release_date
-                ? processMovReleaseDate(movieObj.release_date)
-                : null}
-            </p>
-
-            {movieObj.release_date && movieObj.runtime ? (
-              <span className='info-spacer'> | </span>
-            ) : null}
-
-            <p className='movie-runtime'>
-              {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
-            </p>
-
-            {movieObj.runtime && movieObj.vote_average ? (
-              <span className='info-spacer'> | </span>
-            ) : null}
-
-            <p className='movie-rating'>
-              {movieObj.vote_average
-                ? processMovRating(movieObj.vote_average)
-                : null}{" "}
-            </p>
-          </div>
-
-          <div className='movie-genre-container'>
-            {movieObj.genres ? processMovGenre(movieObj.genres) : null}
-          </div>
-
-          <div className='movie-overview'>
-            <h3>Overview:</h3>
-            <p>{movieObj.overview ? movieObj.overview : null}</p>
-          </div>
-        </div>
-
-        <button className='back-button' onClick={handleBackButtonClick}>
-          back
-        </button>
-
-        <FavButton
-          handleFavButtonClick={() => handleFavButtonClick(movieObj)}
-          isFav={isFav}
-        />
       </div>
     </section>
   );

@@ -14,7 +14,7 @@ const PageHome = () => {
     if (movieCategory) {
       const fetchMoviesByCategory = async () => {
         const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${API_KEY}&language=en-US&page=1 `
+          `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${API_KEY}&language=en-US&page=1`
         );
         let data = await res.json();
         setMoviesDataByCategory(data);
