@@ -187,15 +187,27 @@ section {
   .detail-movie-card-wrapper {
     position: relative;
     color: $white;
-    padding: 2rem 0;
+    padding: 3rem 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba($black, 0.15);
+      z-index: 1;
+    }
+
     .detail-moive-card {
       position: relative;
       width: 90%;
       margin: 0 auto;
-      background-color: rgba($black, 0.75);
-      // background-color: $dark-grey;
+      background-color: rgba($black, 0.85);
+      backdrop-filter: blur(5px);
       border-radius: 0.25rem;
       overflow: hidden;
+      z-index: 9;
       .movie-poster-wrapper {
         .movie-poster {
           position: relative;
@@ -222,7 +234,7 @@ section {
           font-weight: 600;
         }
         .movie-tagline {
-          font-weight: 200;
+          font-weight: 300;
           font-style: italic;
           font-size: 1.125rem;
           margin: 0.5rem 0 1rem 0;
@@ -254,18 +266,18 @@ section {
             border-radius: 0.5rem;
             padding: 0.1rem 0.5rem;
             margin: 0.5rem 0.5rem 0.5rem 0;
-            font-weight: 300;
+            font-weight: 400;
             font-size: 1rem;
           }
         }
         .movie-overview {
           h3 {
-            font-weight: 400;
+            font-weight: 500;
             font-size: 1.25rem;
             margin: 0.5rem 0;
           }
           p {
-            font-weight: 200;
+            font-weight: 300;
             font-size: 1.125rem;
           }
         }
@@ -274,7 +286,7 @@ section {
         display: block;
         background-color: transparent;
         color: $white;
-        border: 2px solid $rose-red;
+        border: 1.5px solid $rose-red;
         border-radius: 1.25rem;
         text-transform: capitalize;
         margin: 3rem auto;
@@ -324,8 +336,8 @@ section {
 @media (min-width: 34.75em) {
   .individual-page {
     .detail-movie-card-wrapper {
-      background-size: cover;
-
+      // background-size: cover;
+      // opacity: 50%;
       .detail-moive-card {
         display: grid;
         grid-template-columns: 1fr 2fr;
