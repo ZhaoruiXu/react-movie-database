@@ -1,18 +1,19 @@
-import { searchQueryStorageName } from "../../globals/globals";
+// import { searchQueryStorageName } from "../../globals/globals";
 import { createSlice } from "@reduxjs/toolkit";
 
-function getSearchQuery() {
-  let searchQueryStorage = localStorage.getItem(searchQueryStorageName);
-  if (searchQueryStorage === null) {
-    searchQueryStorage = "";
-  } else {
-    searchQueryStorage = JSON.parse(searchQueryStorage);
-  }
-  return searchQueryStorage;
-}
+// function getSearchQuery() {
+//   let searchQueryStorage = localStorage.getItem(searchQueryStorageName);
+//   if (searchQueryStorage === null) {
+//     searchQueryStorage = "";
+//   } else {
+//     searchQueryStorage = JSON.parse(searchQueryStorage);
+//   }
+//   return searchQueryStorage;
+// }
 
 const initialState = {
-  item: getSearchQuery(),
+  // item: getSearchQuery(),
+  item: "",
 };
 
 export const searchQuerySlice = createSlice({
@@ -21,14 +22,6 @@ export const searchQuerySlice = createSlice({
   reducers: {
     updateSearchQuery: (state, action) => {
       const newSearchQuery = action.payload;
-      localStorage.setItem(
-        searchQueryStorageName,
-        JSON.stringify(newSearchQuery)
-      );
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       state.item = newSearchQuery;
     },
   },
