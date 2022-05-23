@@ -15,7 +15,8 @@ export default function MenuButton({ reference, blurSearch }) {
       onClick={() => {
         dispatch(updateNavState(!isNavOpen));
         blurSearch();
-      }}>
+      }}
+      aria-label='Navigation menu button'>
       <div className={`bar bar1 ${isNavOpen ? "moveDown" : ""}`}></div>
       <div className='bar bar2'></div>
       <div className={`bar bar3 ${isNavOpen ? "moveUp" : ""}`}></div>

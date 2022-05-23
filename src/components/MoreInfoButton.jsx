@@ -10,7 +10,8 @@ export default function MoreInfoButton({
       className='more-info-btn'
       style={{ pointerEvents: isCardOpen ? "" : "none" }}
       onFocus={handleMovieCardFocus}
-      onBlur={handleMovieCardBlur}>
+      onBlur={handleMovieCardBlur}
+      aria-label='Movie more info button'>
       more info
     </button>
   );

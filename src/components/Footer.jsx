@@ -39,13 +39,13 @@ export default function footer() {
         <div className='social-container'>
           <p>follow us</p>
           <div className='social-icons-container'>
-            <a href='https://www.youtube.com/'>
+            <a href='https://www.youtube.com/' aria-label='YouTube site'>
               <AiFillYoutube />
             </a>
-            <a href='https://www.instagram.com/'>
+            <a href='https://www.instagram.com/' aria-label='Instagram site'>
               <AiOutlineInstagram />
             </a>
-            <a href='https://twitter.com/'>
+            <a href='https://twitter.com/' aria-label='Twitter site'>
               <AiOutlineTwitter />
             </a>
           </div>

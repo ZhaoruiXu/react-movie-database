@@ -176,7 +176,10 @@ const PageIndividual = () => {
             isFav={isFav}
           />
 
-          <button className='back-button' onClick={handleBackButtonClick}>
+          <button
+            className='back-button'
+            onClick={handleBackButtonClick}
+            aria-label='Go back to previous page button'>
             back
           </button>
         </div>

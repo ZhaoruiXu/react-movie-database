@@ -41,7 +41,7 @@ export default function NavMain({ reference }) {
           <li>About</li>
         </NavLink>
         <NavLink
-          to='favourites'
+          to='/favourites'
           tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
           <li>Favourites</li>
         </NavLink>
