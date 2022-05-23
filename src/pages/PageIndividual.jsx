@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addFav, deleteFav } from "../features/favs/favsSlice";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   appTitle,
@@ -8,9 +11,6 @@ import {
 } from "../globals/globals";
 import moviePosterPlaceHolder from "../images/movie-poster-placeholder.svg";
 import FavButton from "../components/FavButton";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { addFav, deleteFav } from "../features/favs/favsSlice";
 
 const numMovGeners = 5;
 const movRatingDigits = 1;

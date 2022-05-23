@@ -282,17 +282,16 @@ section {
       }
       .back-button {
         display: block;
+        align-self: center;
         background-color: transparent;
         color: $white;
         border: 1.5px solid $rose-red;
         border-radius: 1.25rem;
         text-transform: capitalize;
+        font-weight: 300;
         margin: 3rem auto;
-        width: 35%;
-        max-width: 8rem;
-        height: 3rem;
+        padding: 0.75rem 2.125rem;
         transition: background-color 0.075s ease-out;
-        cursor: pointer;
         &:hover,
         &:focus {
           background-color: $rose-red;
@@ -403,6 +402,11 @@ section {
               font-size: 1.25rem;
             }
           }
+        }
+        .back-button {
+          font-weight: 300;
+          margin: 2.25rem auto;
+          padding: 0.75rem 2.125rem;
         }
         .fav-button {
           margin: 2.75rem 2rem;

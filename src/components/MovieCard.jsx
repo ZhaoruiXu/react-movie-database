@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { addFav, deleteFav } from "../features/favs/favsSlice";
 import moviePosterPlaceHolder from "../images/movie-poster-placeholder.svg";
 import movieBackdropPlaceHolder from "../images/movie-backdrop-placeholder.svg";
 import { endPointGetW500Img, API_KEY } from "../globals/globals";
 import FavButton from "../components/FavButton";
 import MoreInfoButton from "../components/MoreInfoButton";
-import { addFav, deleteFav } from "../features/favs/favsSlice";
 
-const numMovGeners = 2;
-const numMovOverviewChar = 150;
-const movRatingDigits = 1;
+const NUM_MOVIE_GENRE = 2;
+const NUM_MOVIE_OVERVIEW_CHAR = 150;
+const MOVIE_RATING_DIGITS = 1;
 
 export default function MovieCard({ movieId }) {
   const [movieObj, setMovieObj] = useState(false);
@@ -109,8 +109,8 @@ export default function MovieCard({ movieId }) {
   };
 
   const processMovOverview = movOverview => {
-    if (movOverview.length > numMovOverviewChar) {
-      return `${movOverview.substr(0, numMovOverviewChar)} ...`;
+    if (movOverview.length > NUM_MOVIE_OVERVIEW_CHAR) {
+      return `${movOverview.substr(0, NUM_MOVIE_OVERVIEW_CHAR)} ...`;
     }
     return movOverview;
   };
@@ -129,12 +129,12 @@ export default function MovieCard({ movieId }) {
   };
 
   const processMovRating = movRating => {
-    return movRating.toFixed(movRatingDigits);
+    return movRating.toFixed(MOVIE_RATING_DIGITS);
   };
 
   const processMovGenre = movGenres => {
-    if (movGenres.length > numMovGeners) {
-      movGenres = movGenres.slice(0, numMovGeners);
+    if (movGenres.length > NUM_MOVIE_GENRE) {
+      movGenres = movGenres.slice(0, NUM_MOVIE_GENRE);
     }
     return movGenres.map(oneMovGenre => {
       return (

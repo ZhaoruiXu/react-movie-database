@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import { appTitle, API_KEY } from "../globals/globals";
 import Movies from "../components/Movies";
 import CategoryBar from "../components/CategoryBar";
 import LoadMoreButton from "../components/LoadMoreButton";
-import { useSelector } from "react-redux";
 
 const PageHome = () => {
   const [totalMoviesDataByCategory, setTotalMoviesDataByCategory] = useState(
@@ -14,6 +14,7 @@ const PageHome = () => {
   const movieCategory = useSelector(state => state.cats.item);
   const previousPageNumber = useRef(0);
   const previousMovieCategory = useRef("");
+  const insideMoreInfoBtn = useRef(null);
 
   useEffect(() => {
     document.title = `${appTitle} - Home`;
@@ -58,6 +59,7 @@ const PageHome = () => {
 
   const handleLoadMoreBtnClick = () => {
     setPageNumber(prev => prev + 1);
+    insideMoreInfoBtn.current.blur();
   };
 
   return (
@@ -68,7 +70,10 @@ const PageHome = () => {
         <Movies moviesData={totalMoviesDataByCategory} />
       )}
       {isMoreToLoad && (
-        <LoadMoreButton handleLoadMoreBtnClick={handleLoadMoreBtnClick} />
+        <LoadMoreButton
+          reference={insideMoreInfoBtn}
+          handleLoadMoreBtnClick={handleLoadMoreBtnClick}
+        />
       )}
     </section>
   );

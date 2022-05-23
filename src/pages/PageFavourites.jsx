@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { appTitle } from "../globals/globals";
-import Movies from "../components/Movies";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { appTitle } from "../globals/globals";
+import Movies from "../components/Movies";
 
 import { AiFillHeart } from "react-icons/ai";
 

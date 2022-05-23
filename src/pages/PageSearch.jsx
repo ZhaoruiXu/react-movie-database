@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { appTitle, API_KEY } from "../globals/globals";
-import { useParams } from "react-router-dom";
-import Movies from "../components/Movies";
 import { useDispatch } from "react-redux";
 import { updateSearchQuery } from "../features/searchQuery/searchQuerySlice";
+import { useParams } from "react-router-dom";
+import { appTitle, API_KEY } from "../globals/globals";
+import Movies from "../components/Movies";
 
 const PageSearch = () => {
   const { query } = useParams();
