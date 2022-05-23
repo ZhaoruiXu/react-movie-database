@@ -191,6 +191,7 @@ export default function MovieCard({ movieId }) {
             {movieObj.genres ? processMovGenre(movieObj.genres) : null}
           </div>
         </div>
+
         <FavButton
           handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
           isFav={isFav}
