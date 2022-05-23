@@ -7,6 +7,7 @@ import movieBackdropPlaceHolder from "../images/movie-backdrop-placeholder.svg";
 import { endPointGetW500Img, API_KEY } from "../globals/globals";
 import FavButton from "../components/FavButton";
 import MoreInfoButton from "../components/MoreInfoButton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const NUM_MOVIE_GENRE = 2;
 const NUM_MOVIE_OVERVIEW_CHAR = 150;
@@ -158,16 +159,22 @@ export default function MovieCard({ movieId }) {
       <div className='default-movie-card'>
         <div className='movie-poster'>
           {movieObj.poster_path === null ? (
-            <img src={moviePosterPlaceHolder} alt='No poster avaliable' />
+            <LazyLoadImage
+              src={moviePosterPlaceHolder}
+              alt='No poster avaliable'
+              effect='opacity'
+            />
           ) : (
             movieObj.poster_path !== undefined && (
-              <img
+              <LazyLoadImage
                 src={endPointGetW500Img + movieObj.poster_path}
                 alt={movieObj.title}
+                effect='opacity'
               />
             )
           )}
         </div>
+
         <div className='movie-info'>
           <h3 className='movie-title'>
             {movieObj.title ? movieObj.title : null}
@@ -193,17 +200,22 @@ export default function MovieCard({ movieId }) {
       <div className={`hovered-movie-card ${cardOpen ? "is-hovered" : ""}`}>
         <div className='movie-backdrop'>
           {movieObj.backdrop_path === null ? (
-            <img src={movieBackdropPlaceHolder} alt='No backdrop avaliable' />
+            <LazyLoadImage
+              src={movieBackdropPlaceHolder}
+              alt='No backdrop avaliable'
+              effect='opacity'
+            />
           ) : (
             movieObj.backdrop_path !== undefined && (
-              <img
-                className='backdrop-img'
+              <LazyLoadImage
                 src={endPointGetW500Img + movieObj.backdrop_path}
                 alt={movieObj.title}
+                effect='opacity'
               />
             )
           )}
         </div>
+
         <div className='movie-info'>
           <p className='movie-released-date'>
             {movieObj.release_date
@@ -216,7 +228,7 @@ export default function MovieCard({ movieId }) {
               : null}
           </p>
           <div className='movie-overview'>
-            <h3>Overview:</h3>
+            {movieObj.overview && <h3>Overview:</h3>}
             <p>
               {movieObj.overview ? processMovOverview(movieObj.overview) : null}
             </p>
