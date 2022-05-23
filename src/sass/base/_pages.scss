@@ -237,14 +237,14 @@ section {
         .movie-tagline {
           font-weight: 300;
           font-style: italic;
-          font-size: 1.125rem;
+          font-size: 1.15rem;
           margin: 0.5rem 0 1rem 0;
         }
         .movie-stats-info {
           p {
             display: inline-block;
-            font-size: 1.125rem;
-            font-weight: 400;
+            font-size: 1.15rem;
+            font-weight: 500;
           }
           .movie-rating {
             span {
@@ -262,8 +262,8 @@ section {
             display: inline-block;
             background-color: $light-grey;
             border-radius: 0.5rem;
-            padding: 0.1rem 0.5rem;
-            margin: 0.5rem 0.5rem 0.5rem 0;
+            padding: 0.175rem 0.625rem;
+            margin: 0.5rem 0.65rem 0.5rem 0;
             font-weight: 400;
             font-size: 1rem;
           }
@@ -343,6 +343,9 @@ section {
         .movie-info {
           padding: 1rem 10% 1rem 5%;
         }
+        .back-button {
+          margin: 2rem auto;
+        }
         .fav-button {
           margin: 1.25rem 1rem;
         }
@@ -384,10 +387,9 @@ section {
           }
           .movie-genre-container {
             .movie-genre {
-              padding: 0.125rem 0.5rem;
+              padding: 0.15rem 0.75rem;
               margin: 0.5rem 0.75rem 0.5rem 0;
-              font-weight: 300;
-              font-size: 1.25rem;
+              font-size: 1.2rem;
             }
           }
           .movie-overview {

@@ -7,7 +7,6 @@ import {
   endPointGetOriginalImg,
 } from "../globals/globals";
 import moviePosterPlaceHolder from "../images/movie-poster-placeholder.svg";
-import movieBackdropPlaceHolder from "../images/movie-backdrop-placeholder.svg";
 import FavButton from "../components/FavButton";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -172,14 +171,14 @@ const PageIndividual = () => {
             </div>
           </div>
 
-          <button className='back-button' onClick={handleBackButtonClick}>
-            back
-          </button>
-
           <FavButton
             handleFavButtonClick={() => handleFavButtonClick(movieObj)}
             isFav={isFav}
           />
+
+          <button className='back-button' onClick={handleBackButtonClick}>
+            back
+          </button>
         </div>
       </div>
     </section>

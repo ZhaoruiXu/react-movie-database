@@ -22,12 +22,14 @@ const PageHome = () => {
       console.log(pageNumber, movieCategory);
       console.log(previousMovieCategory.current, movieCategory);
       if (movieCategory !== previousMovieCategory.current) {
+        // check if there is a change in catergory
         setPageNumber(1);
         setTotalMoviesDataByCategory([]);
       }
 
       const fetchMoviesByCategory = async () => {
         if (pageNumber !== previousPageNumber.current || pageNumber === 1) {
+          // check if there is a new page number OR pageNumber equal 1 (occurs when a new catergory is selected, including initial loading)
           const res = await fetch(
             `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
           );
