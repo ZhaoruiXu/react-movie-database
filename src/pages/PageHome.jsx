@@ -1,34 +1,72 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { appTitle, API_KEY } from "../globals/globals";
 import Movies from "../components/Movies";
 import CategoryBar from "../components/CategoryBar";
+import LoadMoreButton from "../components/LoadMoreButton";
 import { useSelector } from "react-redux";
 
 const PageHome = () => {
-  const [moviesDataByCategory, setMoviesDataByCategory] = useState(false);
+  const [totalMoviesDataByCategory, setTotalMoviesDataByCategory] = useState(
+    []
+  );
+  const [pageNumber, setPageNumber] = useState(1);
+  const [isMoreToLoad, setIsMoreToLoad] = useState(false);
   const movieCategory = useSelector(state => state.cats.item);
+  const previousPageNumber = useRef(0);
+  const previousMovieCategory = useRef("");
 
   useEffect(() => {
     document.title = `${appTitle} - Home`;
 
     if (movieCategory) {
+      console.log(pageNumber, movieCategory);
+      console.log(previousMovieCategory.current, movieCategory);
+      if (movieCategory !== previousMovieCategory.current) {
+        setPageNumber(1);
+        setTotalMoviesDataByCategory([]);
+      }
+
       const fetchMoviesByCategory = async () => {
-        const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${API_KEY}&language=en-US&page=1`
-        );
-        let data = await res.json();
-        setMoviesDataByCategory(data);
+        if (pageNumber !== previousPageNumber.current || pageNumber === 1) {
+          const res = await fetch(
+            `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
+          );
+          let data = await res.json();
+
+          if (data.resutls !== false) {
+            setTotalMoviesDataByCategory(prev => {
+              return [...prev, ...data.results];
+            });
+          }
+
+          if (data.total_pages <= pageNumber) {
+            setIsMoreToLoad(false);
+          } else {
+            setIsMoreToLoad(true);
+          }
+        }
       };
       fetchMoviesByCategory();
     }
-  }, [movieCategory]);
+    return () => {
+      previousPageNumber.current = pageNumber;
+      previousMovieCategory.current = movieCategory;
+    };
+  }, [movieCategory, pageNumber]);
+
+  const handleLoadMoreBtnClick = () => {
+    setPageNumber(prev => prev + 1);
+  };
 
   return (
     <section className='home-page'>
       <h2 className='screen-reader-text'>Home Page</h2>
       <CategoryBar />
-      {moviesDataByCategory.resutls !== false && (
-        <Movies moviesData={moviesDataByCategory.results} />
+      {totalMoviesDataByCategory !== false && (
+        <Movies moviesData={totalMoviesDataByCategory} />
+      )}
+      {isMoreToLoad && (
+        <LoadMoreButton handleLoadMoreBtnClick={handleLoadMoreBtnClick} />
       )}
     </section>
   );

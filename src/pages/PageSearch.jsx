@@ -47,7 +47,8 @@ const PageSearch = () => {
       moviesDataByQuery.results.length > 0 ? (
         <h2>Search Results</h2>
       ) : (
-        <h2> No Search Results</h2>
+        moviesDataByQuery.results !== undefined &&
+        moviesDataByQuery.results.length < 1 && <h2> No Search Results</h2>
       )}
 
       {moviesDataByQuery.results !== undefined &&
