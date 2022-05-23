@@ -18,7 +18,6 @@ const SearchBar = ({ reference }) => {
   // auto-update search result
   useEffect(() => {
     const updateSearch = () => {
-      // console.log(location.pathname, previousPath.current);
       if (searchInput && searchInput !== previousSearchQuery.current) {
         // when there is an actual change in search query string
         navigate(`/search/${searchInput}`);
@@ -36,10 +35,10 @@ const SearchBar = ({ reference }) => {
       previousSearchQuery.current = searchInput; // setting previous state to useRef
       previousPath.current = location.pathname; // setting previous path
     };
-  }, [searchInput, navigate, location]);
+  }, [searchInput, navigate, location, dispatch]);
 
   const handleSearchInputFocus = () => {
-    if (searchInput !== "" && searchInput !== previousSearchQuery.current) {
+    if (searchInput !== "") {
       navigate(`/search/${searchInput}`);
     }
   };
