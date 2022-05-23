@@ -56,7 +56,7 @@ section {
 @media (min-width: 56.25em) {
   .search-page {
     &.center {
-      height: calc(100vh - 63.38px - 196px);
+      height: calc(100vh - 75.59px - 196px);
     }
     .no-search-result-message {
       p {
@@ -104,7 +104,7 @@ section {
 
 @media (min-width: 56.25em) {
   .about-page {
-    height: calc(100vh - 63.38px - 196px);
+    height: calc(100vh - 75.59px - 196px);
     .about-content {
       margin-bottom: 2rem;
       p {
@@ -161,7 +161,7 @@ section {
 @media (min-width: 56.25em) {
   .favourites-page {
     &.center {
-      height: calc(100vh - 63.38px - 196px);
+      height: calc(100vh - 75.59px - 196px);
     }
     .no-favourites-message {
       p {
@@ -202,6 +202,7 @@ section {
     .detail-moive-card {
       position: relative;
       width: 90%;
+      max-width: 125rem;
       margin: 0 auto;
       background-color: rgba($black, 0.85);
       backdrop-filter: blur(5px);
@@ -244,9 +245,6 @@ section {
             display: inline-block;
             font-size: 1.125rem;
             font-weight: 400;
-            &:nth-child(2) {
-              margin: 0 1rem;
-            }
           }
           .movie-rating {
             span {
@@ -336,8 +334,6 @@ section {
 @media (min-width: 34.75em) {
   .individual-page {
     .detail-movie-card-wrapper {
-      // background-size: cover;
-      // opacity: 50%;
       .detail-moive-card {
         display: grid;
         grid-template-columns: 1fr 2fr;
@@ -349,6 +345,65 @@ section {
         }
         .fav-button {
           margin: 1.25rem 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 75em) {
+  .individual-page {
+    .detail-movie-card-wrapper {
+      .detail-moive-card {
+        grid-template-columns: 1fr 3fr;
+
+        .movie-info {
+          padding: 2rem 10% 1rem 5%;
+
+          .movie-title {
+            font-size: 2.25rem;
+            font-weight: 500;
+          }
+          .movie-tagline {
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1.35rem;
+            margin: 0.5rem 0 1rem 0;
+          }
+          .movie-stats-info {
+            p {
+              display: inline-block;
+              font-size: 1.35rem;
+              font-weight: 400;
+            }
+            .info-spacer {
+              margin: 0 0.75rem;
+              font-weight: 200;
+              font-size: 1.5rem;
+            }
+          }
+          .movie-genre-container {
+            .movie-genre {
+              padding: 0.125rem 0.5rem;
+              margin: 0.5rem 0.75rem 0.5rem 0;
+              font-weight: 300;
+              font-size: 1.25rem;
+            }
+          }
+          .movie-overview {
+            h3 {
+              font-weight: 500;
+              font-size: 1.75rem;
+              margin: 0.5rem 0;
+            }
+            p {
+              font-weight: 300;
+              font-size: 1.25rem;
+            }
+          }
+        }
+        .fav-button {
+          margin: 2.75rem 2rem;
         }
       }
     }
