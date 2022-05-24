@@ -26,6 +26,7 @@ const PageHome = () => {
       // console.log(previousMovieCategory.current, movieCategory);
       if (movieCategory !== previousMovieCategory.current) {
         // check if there is a change in catergory
+
         setPageNumber(1);
         setTotalMoviesDataByCategory([]);
         setIsLoaded(false);

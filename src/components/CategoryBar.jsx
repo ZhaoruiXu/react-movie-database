@@ -30,7 +30,6 @@ export default function CategoryBar() {
   };
 
   const handleCategoryChange = e => {
-    console.log("changed");
     dispatch(updateCategory(e.target.value));
   };
 
