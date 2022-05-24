@@ -3,6 +3,7 @@ footer {
   background-color: $dark-grey;
   color: $lightest-grey;
   flex-grow: 1;
+  z-index: 10;
   // margin-top: 2rem;
 
   .footer-wrapper {

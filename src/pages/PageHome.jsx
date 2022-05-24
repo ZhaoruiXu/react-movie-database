@@ -4,8 +4,10 @@ import { appTitle, API_KEY } from "../globals/globals";
 import Movies from "../components/Movies";
 import CategoryBar from "../components/CategoryBar";
 import LoadMoreButton from "../components/LoadMoreButton";
+import Loading from "../components/Loading";
 
 const PageHome = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [totalMoviesDataByCategory, setTotalMoviesDataByCategory] = useState(
     []
   );
@@ -20,12 +22,13 @@ const PageHome = () => {
     document.title = `${appTitle} - Home`;
 
     if (movieCategory) {
-      console.log(pageNumber, movieCategory);
-      console.log(previousMovieCategory.current, movieCategory);
+      // console.log(pageNumber, movieCategory);
+      // console.log(previousMovieCategory.current, movieCategory);
       if (movieCategory !== previousMovieCategory.current) {
         // check if there is a change in catergory
         setPageNumber(1);
         setTotalMoviesDataByCategory([]);
+        setIsLoaded(false);
       }
 
       const fetchMoviesByCategory = async () => {
@@ -34,18 +37,25 @@ const PageHome = () => {
           const res = await fetch(
             `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
           );
-          let data = await res.json();
 
-          if (data.resutls !== false) {
-            setTotalMoviesDataByCategory(prev => {
-              return [...prev, ...data.results];
-            });
-          }
+          if (res.ok) {
+            setIsLoaded(true);
 
-          if (data.total_pages <= pageNumber) {
-            setIsMoreToLoad(false);
+            let data = await res.json();
+
+            if (data.resutls !== false) {
+              setTotalMoviesDataByCategory(prev => {
+                return [...prev, ...data.results];
+              });
+            }
+
+            if (data.total_pages <= pageNumber) {
+              setIsMoreToLoad(false);
+            } else {
+              setIsMoreToLoad(true);
+            }
           } else {
-            setIsMoreToLoad(true);
+            setIsLoaded(false);
           }
         }
       };
@@ -66,10 +76,17 @@ const PageHome = () => {
     <section className='home-page'>
       <h2 className='screen-reader-text'>Home Page</h2>
       <CategoryBar />
-      {totalMoviesDataByCategory !== false && (
+      {/* {isLoaded ? (
         <Movies moviesData={totalMoviesDataByCategory} />
-      )}
-      {isMoreToLoad && (
+      ) : (
+        <Loading />
+      )} */}
+
+      {!isLoaded && <Loading />}
+
+      {isLoaded && <Movies moviesData={totalMoviesDataByCategory} />}
+
+      {isLoaded && isMoreToLoad && (
         <LoadMoreButton
           reference={insideMoreInfoBtn}
           handleLoadMoreBtnClick={handleLoadMoreBtnClick}

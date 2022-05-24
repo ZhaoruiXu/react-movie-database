@@ -30,25 +30,29 @@ export default function CategoryBar() {
   };
 
   const handleCategoryChange = e => {
+    console.log("changed");
     dispatch(updateCategory(e.target.value));
   };
 
   return (
-    <form className='movie-category-container'>
-      <select
+    <div className='movie-category-container'>
+      {/* <select
         name='selectCategory'
         id='selectCategory'
         className='select-movie-category'
         value={selectedCategory}
-        onChange={handleCategoryChange}>
-        {movieCategories.map((movieCategory, index) => {
-          return (
-            <option key={index} value={movieCategory}>
-              {convertCategoryName(movieCategory)}
-            </option>
-          );
-        })}
-      </select>
-    </form>
+        onChange={handleCategoryChange}> */}
+      {movieCategories.map((movieCategory, index) => {
+        return (
+          <button
+            key={index}
+            value={movieCategory}
+            onClick={handleCategoryChange}>
+            {convertCategoryName(movieCategory)}
+          </button>
+        );
+      })}
+      {/* </select> */}
+    </div>
   );
 }

@@ -1,0 +1,39 @@
+.skeleton-movies-container {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 1rem;
+  max-width: 100rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  .skeleton-movie-card {
+    width: 18rem;
+    height: 33.5rem;
+    background-color: $dark-grey;
+    border-radius: 0.25rem;
+    overflow: hidden;
+
+    .movie-poster {
+      width: 100%;
+      height: 432px;
+      background-color: $light-grey;
+    }
+    .movie-info {
+      .movie-title {
+        background-color: $medium-grey;
+        width: 80%;
+        height: 2rem;
+        margin: 0.75rem 0.75rem;
+      }
+      .movie-genre-container {
+        margin: 0.75rem 0.75rem;
+
+        background-color: $medium-grey;
+        width: 50%;
+        height: 2rem;
+      }
+    }
+  }
+}

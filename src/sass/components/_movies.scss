@@ -11,7 +11,17 @@
 
   .movie-card {
     position: relative;
-
+    animation: fade-in-up 0.5s ease-out forwards;
+    @keyframes fade-in-up {
+      from {
+        transform: translateY(20%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
     .default-movie-card {
       background-color: $dark-grey;
       display: flex;
@@ -49,9 +59,6 @@
           stroke: $white;
           stroke-width: 75;
         }
-        // &:focus .fav-button-svg {
-        //   stroke-width: 75;
-        // }
       }
       .movie-poster {
         position: relative;
