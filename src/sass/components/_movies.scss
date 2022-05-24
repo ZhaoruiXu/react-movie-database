@@ -44,13 +44,14 @@
             fill: $white;
           }
         }
-        &:hover .fav-button-svg {
+        &:hover .fav-button-svg,
+        &:focus .fav-button-svg {
           stroke: $white;
           stroke-width: 75;
         }
-        &:focus .fav-button-svg {
-          stroke-width: 75;
-        }
+        // &:focus .fav-button-svg {
+        //   stroke-width: 75;
+        // }
       }
       .movie-poster {
         position: relative;

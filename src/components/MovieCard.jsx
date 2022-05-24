@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
@@ -24,9 +24,10 @@ export default function MovieCard({ movieId }) {
   const navigate = useNavigate();
   // redux dispatch action
   const dispatch = useDispatch();
-
   // pulling localStorage data for favourited movie(s)
   const favs = useSelector(state => state.favs.items);
+  // fav button reference
+  const insideFavButton = useRef(null);
 
   useEffect(() => {
     if (movieId) {
@@ -77,6 +78,10 @@ export default function MovieCard({ movieId }) {
   const handleFavButtonClick = (e, movieObj) => {
     // stop clicking through the fav button
     e.stopPropagation();
+
+    // unfocus the fav button
+    insideFavButton.current.blur();
+
     if (isFav) {
       dispatch(deleteFav(movieObj));
       //remove from localStorage and redux store
@@ -195,6 +200,7 @@ export default function MovieCard({ movieId }) {
         <FavButton
           handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
           isFav={isFav}
+          reference={insideFavButton}
         />
       </div>
 

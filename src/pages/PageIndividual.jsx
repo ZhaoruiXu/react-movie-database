@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
@@ -22,6 +22,7 @@ const PageIndividual = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const insideFavButton = useRef(null);
 
   const favs = useSelector(state => state.favs.items);
 
@@ -49,6 +50,8 @@ const PageIndividual = () => {
   }, [movieObj, favs]);
 
   const handleFavButtonClick = movieObj => {
+    insideFavButton.current.blur();
+
     if (isFav) {
       dispatch(deleteFav(movieObj));
     } else {
@@ -174,6 +177,7 @@ const PageIndividual = () => {
           <FavButton
             handleFavButtonClick={() => handleFavButtonClick(movieObj)}
             isFav={isFav}
+            reference={insideFavButton}
           />
 
           <button

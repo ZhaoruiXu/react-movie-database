@@ -319,13 +319,14 @@ section {
             fill: $white;
           }
         }
-        &:hover .fav-button-svg {
+        &:hover .fav-button-svg,
+        &:focus .fav-button-svg {
           stroke: $white;
           stroke-width: 75;
         }
-        &:focus .fav-button-svg {
-          stroke-width: 75;
-        }
+        // &:focus .fav-button-svg {
+        //   stroke-width: 75;
+        // }
       }
     }
   }
@@ -341,7 +342,7 @@ section {
           grid-area: 1/1/3/2;
         }
         .movie-info {
-          padding: 1rem 10% 1rem 5%;
+          padding: 1rem 15% 1rem 5%;
         }
         .back-button {
           margin: 2rem auto;
@@ -361,7 +362,7 @@ section {
         grid-template-columns: 1fr 3fr;
 
         .movie-info {
-          padding: 2rem 10% 1rem 5%;
+          padding: 2rem 10% 1rem 4%;
 
           .movie-title {
             font-size: 2.25rem;

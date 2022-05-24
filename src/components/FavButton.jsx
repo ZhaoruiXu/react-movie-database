@@ -1,8 +1,9 @@
 import { AiFillHeart } from "react-icons/ai";
 
-export default function FavButton({ handleFavButtonClick, isFav }) {
+export default function FavButton({ handleFavButtonClick, isFav, reference }) {
   return (
     <button
+      ref={reference}
       className='fav-button'
       onClick={handleFavButtonClick}
       aria-label='Favourite movie button'>
