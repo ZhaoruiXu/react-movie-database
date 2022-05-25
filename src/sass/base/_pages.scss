@@ -290,7 +290,7 @@ section {
         text-transform: capitalize;
         font-weight: 300;
         margin: 3rem auto;
-        padding: 0.75rem 2.125rem;
+        padding: 1rem 2.5rem;
         transition: background-color 0.075s ease-out;
         cursor: pointer;
         &:hover,
@@ -408,7 +408,6 @@ section {
         .back-button {
           font-weight: 300;
           margin: 2.25rem auto;
-          padding: 0.75rem 2.125rem;
         }
         .fav-button {
           margin: 2.75rem 2rem;

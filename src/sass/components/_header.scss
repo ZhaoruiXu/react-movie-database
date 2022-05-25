@@ -58,11 +58,14 @@ header {
         &::placeholder {
           font-weight: 200;
           font-size: 1rem;
-          color: $lightest-grey;
+          color: $light-grey;
         }
         &:focus,
         &:hover {
           box-shadow: inset 0px 0px 3.5px 0px $light-grey;
+        }
+        &:focus::placeholder {
+          color: $lightest-grey;
         }
       }
       .search-icon {
@@ -213,9 +216,8 @@ header {
           padding: 0.65rem 5% 0.65rem 25%;
           font-size: 1.25rem;
           &::placeholder {
-            font-weight: 200;
+            font-weight: 300;
             font-size: 1.15rem;
-            color: $lightest-grey;
           }
         }
         .search-icon {

@@ -169,7 +169,7 @@ const PageIndividual = () => {
             </div>
 
             <div className='movie-overview'>
-              <h3>Overview:</h3>
+              {movieObj.overview && <h3>Overview:</h3>}
               <p>{movieObj.overview ? movieObj.overview : null}</p>
             </div>
           </div>

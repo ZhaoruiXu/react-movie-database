@@ -1,6 +1,7 @@
 import { movieCategories } from "../globals/globals";
 import { useSelector, useDispatch } from "react-redux";
 import { updateCategory } from "../features/cats/categorySlice";
+import { BsFillCaretDownFill } from "react-icons/bs";
 
 export default function CategoryBar() {
   // redux dispatch action
@@ -34,24 +35,24 @@ export default function CategoryBar() {
   };
 
   return (
-    <div className='movie-category-container'>
-      {/* <select
-        name='selectCategory'
-        id='selectCategory'
-        className='select-movie-category'
-        value={selectedCategory}
-        onChange={handleCategoryChange}> */}
-      {movieCategories.map((movieCategory, index) => {
-        return (
-          <button
-            key={index}
-            value={movieCategory}
-            onClick={handleCategoryChange}>
-            {convertCategoryName(movieCategory)}
-          </button>
-        );
-      })}
-      {/* </select> */}
+    <div className='movie-category-wrapper'>
+      <button className='display-category-button'>
+        {convertCategoryName(selectedCategory)}
+        <BsFillCaretDownFill />
+      </button>
+
+      <div className='movie-category-container'>
+        {movieCategories.map((movieCategory, index) => {
+          return (
+            <button
+              key={index}
+              value={movieCategory}
+              onClick={handleCategoryChange}>
+              {convertCategoryName(movieCategory)}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
