@@ -1,56 +1,109 @@
 .movie-category-wrapper {
   position: relative;
-
   width: 100%;
 
   .display-category-button {
     position: relative;
     display: block;
-    background-color: $rose-red;
-    margin: 1rem auto;
-    // padding: 0.75rem 4rem;
-    width: 12.5rem;
+    background-color: rgba($rose-red, 0.95);
+    color: $white;
+    font-weight: 400;
+    margin: 1.5rem auto;
+    width: 18rem;
     height: 2.625rem;
     border-radius: 1rem;
-    // border-top-left-radius: 1rem;
-    // border-top-right-radius: 1rem;
-    color: $white;
     border: none;
-    z-index: 8;
+    z-index: 2;
+    &:hover,
+    &:focus {
+      background-color: $rose-red;
+    }
     svg {
+      position: absolute;
+      display: block;
+      height: 100%;
+      right: 10%;
+      top: 0;
       fill: $white;
-      font-size: 1.2 5rem;
-      margin-left: 0.75rem;
-      vertical-align: middle;
+      font-size: 1.25rem;
+      transition: transform 0.4s ease-in-out;
+    }
+    &.flip-svg-up {
+      svg {
+        transform: rotateX(180deg);
+      }
+    }
+    &.flip-svg-down {
+      svg {
+        transform: rotateX(0deg);
+      }
     }
   }
 
   .movie-category-container {
     position: absolute;
-    // top: 2.625rem;
     top: calc(2.625rem / 2);
     left: 0;
     right: 0;
-    width: 12.5rem;
+    width: 18rem;
     padding-top: calc(2.625rem / 2);
     margin: 0 auto;
     background-color: $dark-grey;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
+    height: 0;
+    transition: height 0.4s;
+    &.expand {
+      height: 190.59px;
+    }
 
     button {
       color: $lightest-grey;
       background-color: $dark-grey;
+      font-weight: 400;
       border: none;
       width: 100%;
-      height: 2.625rem;
+      padding: 0.75rem 0;
       cursor: pointer;
+      &:hover,
+      &:focus {
+        color: $white;
+      }
+      &.current-category {
+        color: $white;
+        background-color: $light-grey;
+      }
+    }
+  }
+}
+
+@media (min-width: 75em) {
+  .movie-category-wrapper {
+    .display-category-button {
+      display: none;
+    }
+    .movie-category-container {
+      position: static;
+      display: flex;
+      width: auto;
+      max-width: 45rem;
+      height: auto;
+      padding-top: 0;
+      margin: 1.5rem auto;
+      border-radius: 1rem;
+      button {
+        font-size: 1.125rem;
+        font-weight: 300;
+        padding: 0.75rem 0;
+        border-radius: 1rem;
+        transition: background-color 0.075s ease-out;
+        &:hover,
+        &:focus {
+          background-color: $rose-red;
+        }
+      }
     }
   }
 }

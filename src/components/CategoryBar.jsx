@@ -1,13 +1,33 @@
+import { React, useState, useEffect, useRef } from "react";
 import { movieCategories } from "../globals/globals";
 import { useSelector, useDispatch } from "react-redux";
 import { updateCategory } from "../features/cats/categorySlice";
 import { BsFillCaretDownFill } from "react-icons/bs";
 
 export default function CategoryBar() {
+  const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
+  const [isDesktopView, setIsDesktopView] = useState(false);
+  const insideCategoryBtn = useRef([]);
   // redux dispatch action
   const dispatch = useDispatch();
-
   const selectedCategory = useSelector(state => state.cats.item);
+
+  useEffect(() => {
+    const listener = () => {
+      if (window.innerWidth >= 1200) {
+        setIsDesktopView(true);
+        return;
+      } else {
+        setIsDesktopView(false);
+      }
+    };
+    window.addEventListener("load", listener);
+    window.addEventListener("resize", listener);
+    return () => {
+      window.removeEventListener("load", listener);
+      window.removeEventListener("resize", listener);
+    };
+  }, []);
 
   let categoryName;
   const convertCategoryName = movieCategory => {
@@ -30,24 +50,48 @@ export default function CategoryBar() {
     return categoryName;
   };
 
-  const handleCategoryChange = e => {
+  const handleCategoryChange = (e, index) => {
     dispatch(updateCategory(e.target.value));
+    insideCategoryBtn.current[index].blur();
+    if (!isDesktopView) {
+      setIsCategoryMenuOpen(!isCategoryMenuOpen);
+    }
+  };
+
+  const handleCategoryButton = () => {
+    if (!isDesktopView) {
+      setIsCategoryMenuOpen(!isCategoryMenuOpen);
+    }
   };
 
   return (
     <div className='movie-category-wrapper'>
-      <button className='display-category-button'>
-        {convertCategoryName(selectedCategory)}
+      <button
+        className={`display-category-button ${
+          !isDesktopView && isCategoryMenuOpen ? "flip-svg-up" : "flip-svg-down"
+        }`}
+        onClick={handleCategoryButton}>
+        <p>{convertCategoryName(selectedCategory)}</p>
         <BsFillCaretDownFill />
       </button>
 
-      <div className='movie-category-container'>
+      <div
+        className={`movie-category-container ${
+          !isDesktopView && isCategoryMenuOpen ? "expand" : ""
+        }`}>
         {movieCategories.map((movieCategory, index) => {
           return (
             <button
+              // Work around for useRef in an array of DOMs
+              ref={el => (insideCategoryBtn.current[index] = el)}
+              className={
+                isDesktopView && selectedCategory === movieCategory
+                  ? "current-category"
+                  : ""
+              }
               key={index}
               value={movieCategory}
-              onClick={handleCategoryChange}>
+              onClick={e => handleCategoryChange(e, index)}>
               {convertCategoryName(movieCategory)}
             </button>
           );
