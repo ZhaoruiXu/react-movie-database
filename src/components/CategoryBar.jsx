@@ -13,20 +13,21 @@ export default function CategoryBar() {
   const selectedCategory = useSelector(state => state.cats.item);
 
   useEffect(() => {
-    const listener = () => {
-      if (window.innerWidth >= 1200) {
+    const listener = e => {
+      if (e.matches) {
         setIsDesktopView(true);
-        return;
       } else {
         setIsDesktopView(false);
       }
     };
-    window.addEventListener("load", listener);
-    window.addEventListener("resize", listener);
-    return () => {
-      window.removeEventListener("load", listener);
-      window.removeEventListener("resize", listener);
-    };
+
+    let mediaQuery = window.matchMedia("(min-width: 75rem)");
+
+    listener(mediaQuery);
+
+    mediaQuery.addEventListener("change", listener);
+    // this is the cleanup function to remove the listener
+    return () => mediaQuery.removeEventListener("change", listener);
   }, []);
 
   let categoryName;
@@ -51,6 +52,8 @@ export default function CategoryBar() {
   };
 
   const handleCategoryChange = (e, index) => {
+    console.log("isDesk2", isDesktopView, "ismenuopen2", isCategoryMenuOpen);
+
     dispatch(updateCategory(e.target.value));
     insideCategoryBtn.current[index].blur();
     if (!isDesktopView) {
@@ -61,7 +64,9 @@ export default function CategoryBar() {
   };
 
   const handleCategoryButton = () => {
+    console.log("isDesk1", isDesktopView, "ismenuopen1", isCategoryMenuOpen);
     if (!isDesktopView) {
+      console.log("changed");
       setIsCategoryMenuOpen(!isCategoryMenuOpen);
     } else {
       setIsCategoryMenuOpen(false);

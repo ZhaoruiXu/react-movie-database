@@ -180,28 +180,32 @@ export default function MovieCard({ movieId }) {
           )}
         </div>
 
-        <div className='movie-info'>
-          <h3 className='movie-title'>
-            {movieObj.title ? movieObj.title : null}
-          </h3>
-          <p className='movie-run-time'>
-            {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
-          </p>
-          <p className='movie-rating'>
-            {movieObj.vote_average
-              ? processMovRating(movieObj.vote_average)
-              : null}
-          </p>
-          <div className='movie-genre-container'>
-            {movieObj.genres ? processMovGenre(movieObj.genres) : null}
-          </div>
-        </div>
+        {movieObj.poster_path !== undefined && (
+          <>
+            <div className='movie-info'>
+              <h3 className='movie-title'>
+                {movieObj.title ? movieObj.title : null}
+              </h3>
+              <p className='movie-run-time'>
+                {movieObj.runtime ? processMovRuntime(movieObj.runtime) : null}
+              </p>
+              <p className='movie-rating'>
+                {movieObj.vote_average
+                  ? processMovRating(movieObj.vote_average)
+                  : null}
+              </p>
+              <div className='movie-genre-container'>
+                {movieObj.genres ? processMovGenre(movieObj.genres) : null}
+              </div>
+            </div>
 
-        <FavButton
-          handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
-          isFav={isFav}
-          reference={insideFavButton}
-        />
+            <FavButton
+              handleFavButtonClick={e => handleFavButtonClick(e, movieObj)}
+              isFav={isFav}
+              reference={insideFavButton}
+            />
+          </>
+        )}
       </div>
 
       <div className={`hovered-movie-card ${cardOpen ? "is-hovered" : ""}`}>
@@ -223,31 +227,37 @@ export default function MovieCard({ movieId }) {
           )}
         </div>
 
-        <div className='movie-info'>
-          <p className='movie-released-date'>
-            {movieObj.release_date
-              ? processMovReleaseDate(movieObj.release_date)
-              : null}
-          </p>
-          <p className='movie-rating'>
-            {movieObj.vote_average
-              ? processMovRating(movieObj.vote_average)
-              : null}
-          </p>
-          <div className='movie-overview'>
-            {movieObj.overview && <h3>Overview:</h3>}
-            <p>
-              {movieObj.overview ? processMovOverview(movieObj.overview) : null}
-            </p>
-          </div>
-        </div>
+        {movieObj.backdrop_path !== undefined && (
+          <>
+            <div className='movie-info'>
+              <p className='movie-released-date'>
+                {movieObj.release_date
+                  ? processMovReleaseDate(movieObj.release_date)
+                  : null}
+              </p>
+              <p className='movie-rating'>
+                {movieObj.vote_average
+                  ? processMovRating(movieObj.vote_average)
+                  : null}
+              </p>
+              <div className='movie-overview'>
+                {movieObj.overview && <h3>Overview:</h3>}
+                <p>
+                  {movieObj.overview
+                    ? processMovOverview(movieObj.overview)
+                    : null}
+                </p>
+              </div>
+            </div>
 
-        <MoreInfoButton
-          handleMoreInfoBtnClick={handleMoreInfoBtnClick}
-          isCardOpen={cardOpen}
-          handleMovieCardFocus={handleMovieCardFocus}
-          handleMovieCardBlur={handleMovieCardBlur}
-        />
+            <MoreInfoButton
+              handleMoreInfoBtnClick={handleMoreInfoBtnClick}
+              isCardOpen={cardOpen}
+              handleMovieCardFocus={handleMovieCardFocus}
+              handleMovieCardBlur={handleMovieCardBlur}
+            />
+          </>
+        )}
       </div>
     </div>
   );
