@@ -84,6 +84,7 @@
     .display-category-button {
       display: none;
     }
+
     .movie-category-container {
       position: static;
       display: flex;
@@ -93,6 +94,7 @@
       padding-top: 0;
       margin: 1.5rem auto;
       border-radius: 1rem;
+
       button {
         font-size: 1.125rem;
         font-weight: 300;

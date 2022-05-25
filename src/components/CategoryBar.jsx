@@ -55,12 +55,16 @@ export default function CategoryBar() {
     insideCategoryBtn.current[index].blur();
     if (!isDesktopView) {
       setIsCategoryMenuOpen(!isCategoryMenuOpen);
+    } else {
+      setIsCategoryMenuOpen(false);
     }
   };
 
   const handleCategoryButton = () => {
     if (!isDesktopView) {
       setIsCategoryMenuOpen(!isCategoryMenuOpen);
+    } else {
+      setIsCategoryMenuOpen(false);
     }
   };
 
@@ -84,6 +88,7 @@ export default function CategoryBar() {
             <button
               // Work around for useRef in an array of DOMs
               ref={el => (insideCategoryBtn.current[index] = el)}
+              tabIndex={isDesktopView ? 0 : isCategoryMenuOpen ? 0 : -1}
               className={
                 isDesktopView && selectedCategory === movieCategory
                   ? "current-category"
