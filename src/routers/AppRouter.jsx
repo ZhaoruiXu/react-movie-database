@@ -15,9 +15,13 @@ import PageSearch from "../pages/PageSearch";
 function AppRouter() {
   return (
     <BrowserRouter basename='/.movdb'>
+      <a href='#site-main' className='screen-reader-text'>
+        Skip to main page
+      </a>
+
       <div className='wrapper'>
         <Header />
-        <main>
+        <main id='site-main'>
           <Routes>
             <Route path='/' element={<PageHome />} />
             <Route path='/about' element={<PageAbout />} />

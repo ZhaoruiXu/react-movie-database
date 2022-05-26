@@ -75,7 +75,6 @@ const PageHome = () => {
 
   return (
     <section className='home-page'>
-      <h2 className='screen-reader-text'>Home Page</h2>
       <CategoryBar />
       {/* {isLoaded ? (
         <Movies moviesData={totalMoviesDataByCategory} />
