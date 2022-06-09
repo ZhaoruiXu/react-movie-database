@@ -13,6 +13,7 @@ const PageHome = () => {
   );
   const [pageNumber, setPageNumber] = useState(1);
   const [isMoreToLoad, setIsMoreToLoad] = useState(false);
+  const [buttonDelay, setButtonDelay] = useState(false);
   const movieCategory = useSelector(state => state.cats.item);
   const previousPageNumber = useRef(0);
   const previousMovieCategory = useRef("");
@@ -65,6 +66,18 @@ const PageHome = () => {
     };
   }, [movieCategory, pageNumber]);
 
+  useEffect(() => {
+    // to prevent flashing button between movie card loads
+    setButtonDelay(false);
+    const timer = setTimeout(() => {
+      setButtonDelay(true);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isLoaded, isMoreToLoad]);
+
   const handleLoadMoreBtnClick = () => {
     setPageNumber(prev => prev + 1);
     insideMoreInfoBtn.current.blur();
@@ -73,17 +86,14 @@ const PageHome = () => {
   return (
     <section className='home-page'>
       <CategoryBar />
-      {/* {isLoaded ? (
-        <Movies moviesData={totalMoviesDataByCategory} />
-      ) : (
-        <Loading />
-      )} */}
 
+      {/* show skeleton before data loads up */}
       {/* {!isLoaded && <Loading />} */}
 
       {isLoaded && <Movies moviesData={totalMoviesDataByCategory} />}
 
-      {isLoaded && isMoreToLoad && (
+      {/* make sure there is more movies to be loaded */}
+      {isLoaded && isMoreToLoad && buttonDelay && (
         <LoadMoreButton
           reference={insideMoreInfoBtn}
           handleLoadMoreBtnClick={handleLoadMoreBtnClick}

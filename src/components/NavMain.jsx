@@ -35,19 +35,19 @@ export default function NavMain({ reference }) {
         dispatch(updateNavState(false));
       }}>
       <ul>
-        <li>
+        <li onClick={e => e.target.blur()}>
           <NavLink to='/' tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
             Home
           </NavLink>
         </li>
-        <li>
+        <li onClick={e => e.target.blur()}>
           <NavLink
             to='/about'
             tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
             About
           </NavLink>
         </li>
-        <li>
+        <li onClick={e => e.target.blur()}>
           <NavLink
             to='/favourites'
             tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>

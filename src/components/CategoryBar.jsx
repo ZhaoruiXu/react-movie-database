@@ -22,7 +22,7 @@ export default function CategoryBar() {
       }
     };
 
-    let mediaQuery = window.matchMedia("(min-width: 75rem)");
+    let mediaQuery = window.matchMedia("(min-width: 56.25rem)");
 
     listener(mediaQuery);
 
