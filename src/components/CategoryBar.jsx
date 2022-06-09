@@ -7,8 +7,11 @@ import { BsFillCaretDownFill } from "react-icons/bs";
 export default function CategoryBar() {
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
   const [isDesktopView, setIsDesktopView] = useState(false);
-  const insiderCatBar = useRef(null);
+
   const insideCategoryBtn = useRef([]);
+
+  const insideCategoryDisplayBtn = useRef(null);
+  const insideCategoryBtnList = useRef(null);
   // redux dispatch action
   const dispatch = useDispatch();
   const selectedCategory = useSelector(state => state.cats.item);
@@ -34,10 +37,12 @@ export default function CategoryBar() {
   useEffect(() => {
     const listener = e => {
       if (
-        insiderCatBar.current &&
+        isCategoryMenuOpen &&
+        insideCategoryDisplayBtn.current &&
+        insideCategoryBtnList.current &&
         e.target &&
-        !insiderCatBar.current.contains(e.target) &&
-        isCategoryMenuOpen
+        !insideCategoryDisplayBtn.current.contains(e.target) &&
+        !insideCategoryBtnList.current.contains(e.target)
       ) {
         setIsCategoryMenuOpen(false);
         return;
@@ -91,12 +96,13 @@ export default function CategoryBar() {
   };
 
   return (
-    <div className='movie-category-wrapper' ref={insiderCatBar}>
+    <div className='movie-category-wrapper'>
       <button
         className={`display-category-button ${
           !isDesktopView && isCategoryMenuOpen ? "flip-svg-up" : "flip-svg-down"
         }`}
-        onClick={handleCategoryButton}>
+        onClick={handleCategoryButton}
+        ref={insideCategoryDisplayBtn}>
         <p>{convertCategoryName(selectedCategory)}</p>
         <BsFillCaretDownFill />
       </button>
@@ -104,7 +110,8 @@ export default function CategoryBar() {
       <div
         className={`movie-category-container ${
           !isDesktopView && isCategoryMenuOpen ? "expand" : ""
-        }`}>
+        }`}
+        ref={insideCategoryBtnList}>
         {movieCategories.map((movieCategory, index) => {
           return (
             <button

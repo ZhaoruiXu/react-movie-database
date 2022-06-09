@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react";
 const Header = () => {
   const isNavOpen = useSelector(state => state.navState.item);
   const dispatch = useDispatch();
-  const insideHeader = useRef(null);
+  const insideNavMain = useRef(null);
   const insideMenuButton = useRef(null);
   const insideSearchBar = useRef(null);
 
@@ -18,10 +18,10 @@ const Header = () => {
     const listener = e => {
       // see if user clicks outside of the header and menu button
       if (
-        insideHeader.current &&
+        insideNavMain.current &&
         insideMenuButton.current &&
         e.target &&
-        !insideHeader.current.contains(e.target) &&
+        !insideNavMain.current.contains(e.target) &&
         !insideMenuButton.current.contains(e.target) &&
         isNavOpen
       ) {
@@ -36,7 +36,7 @@ const Header = () => {
     return () => {
       document.removeEventListener("click", listener);
     };
-  }, [insideHeader, dispatch, isNavOpen]);
+  }, [insideNavMain, dispatch, isNavOpen]);
 
   const blurSearch = () => {
     insideSearchBar.current.blur();
@@ -59,7 +59,7 @@ const Header = () => {
         <SearchBar reference={insideSearchBar} />
         <MenuButton reference={insideMenuButton} blurSearch={blurSearch} />
       </div>
-      <NavMain reference={insideHeader} />
+      <NavMain reference={insideNavMain} />
     </header>
   );
 };
