@@ -71,7 +71,7 @@ const PageHome = () => {
     setButtonDelay(false);
     const timer = setTimeout(() => {
       setButtonDelay(true);
-    }, 1000);
+    }, 700);
 
     return () => {
       clearTimeout(timer);
