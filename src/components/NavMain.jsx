@@ -9,21 +9,22 @@ export default function NavMain({ reference }) {
   const [isDesktopView, setIsDesktopView] = useState();
 
   useEffect(() => {
-    const listener = () => {
-      if (window.innerWidth >= 800) {
+    const listener = e => {
+      if (e.matches) {
         setIsDesktopView(true);
         dispatch(updateNavState(false));
-        return;
       } else {
         setIsDesktopView(false);
       }
     };
-    window.addEventListener("load", listener);
-    window.addEventListener("resize", listener);
-    return () => {
-      window.removeEventListener("load", listener);
-      window.removeEventListener("resize", listener);
-    };
+
+    let mediaQuery = window.matchMedia("(min-width: 56.25rem)");
+
+    listener(mediaQuery);
+
+    mediaQuery.addEventListener("change", listener);
+    // this is the cleanup function to remove the listener
+    return () => mediaQuery.removeEventListener("change", listener);
   }, [dispatch]);
 
   return (

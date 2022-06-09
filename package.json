@@ -1,6 +1,6 @@
 {
   "name": "movie-database",
-  "homepage": "/.movdb",
+  "homepage": "/movdb",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

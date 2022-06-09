@@ -7,6 +7,7 @@ import { BsFillCaretDownFill } from "react-icons/bs";
 export default function CategoryBar() {
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
   const [isDesktopView, setIsDesktopView] = useState(false);
+  const insiderCatBar = useRef(null);
   const insideCategoryBtn = useRef([]);
   // redux dispatch action
   const dispatch = useDispatch();
@@ -30,6 +31,26 @@ export default function CategoryBar() {
     return () => mediaQuery.removeEventListener("change", listener);
   }, []);
 
+  useEffect(() => {
+    const listener = e => {
+      if (
+        insiderCatBar.current &&
+        e.target &&
+        !insiderCatBar.current.contains(e.target) &&
+        isCategoryMenuOpen
+      ) {
+        setIsCategoryMenuOpen(false);
+        return;
+      }
+    };
+
+    document.addEventListener("click", listener);
+
+    return () => {
+      document.removeEventListener("click", listener);
+    };
+  }, [isCategoryMenuOpen]);
+
   let categoryName;
   const convertCategoryName = movieCategory => {
     switch (movieCategory) {
@@ -52,8 +73,6 @@ export default function CategoryBar() {
   };
 
   const handleCategoryChange = (e, index) => {
-    console.log("isDesk2", isDesktopView, "ismenuopen2", isCategoryMenuOpen);
-
     dispatch(updateCategory(e.target.value));
     insideCategoryBtn.current[index].blur();
     if (!isDesktopView) {
@@ -64,9 +83,7 @@ export default function CategoryBar() {
   };
 
   const handleCategoryButton = () => {
-    console.log("isDesk1", isDesktopView, "ismenuopen1", isCategoryMenuOpen);
     if (!isDesktopView) {
-      console.log("changed");
       setIsCategoryMenuOpen(!isCategoryMenuOpen);
     } else {
       setIsCategoryMenuOpen(false);
@@ -74,7 +91,7 @@ export default function CategoryBar() {
   };
 
   return (
-    <div className='movie-category-wrapper'>
+    <div className='movie-category-wrapper' ref={insiderCatBar}>
       <button
         className={`display-category-button ${
           !isDesktopView && isCategoryMenuOpen ? "flip-svg-up" : "flip-svg-down"

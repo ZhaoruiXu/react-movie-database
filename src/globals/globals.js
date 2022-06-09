@@ -11,12 +11,5 @@ export const movieCategories = [
   "upcoming",
 ];
 
-// https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg   get image
-// https://api.themoviedb.org/3/movie/top_rated?api_key=b3ae8fbaf360bb8bec2aa030f5f38b60&language=en-US&page=2  get top-rated
-// https://api.themoviedb.org/3/movie/popular?api_key=b3ae8fbaf360bb8bec2aa030f5f38b60&language=en-US&page=2  get popular
-// https://api.themoviedb.org/3/search/movie?api_key=b3ae8fbaf360bb8bec2aa030f5f38b60&query=spider-man:no-way-home&primary_release_year=2021&include_adult=false // search a movie
-// https://api.themoviedb.org/3/genre/movie/list?api_key=b3ae8fbaf360bb8bec2aa030f5f38b60 genre ref
-// export const endPointGetW300BackDrop = "https://image.tmdb.org/t/p/w300/";
-// export const endPointGetW342Poster = "https://image.tmdb.org/t/p/w342/";
 export const endPointGetW500Img = "https://image.tmdb.org/t/p/w500/";
 export const endPointGetOriginalImg = "https://image.tmdb.org/t/p/original/";

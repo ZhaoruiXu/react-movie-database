@@ -16,6 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     const listener = e => {
+      // see if user clicks outside of the header and menu button
       if (
         insideHeader.current &&
         insideMenuButton.current &&
@@ -24,6 +25,7 @@ const Header = () => {
         !insideMenuButton.current.contains(e.target) &&
         isNavOpen
       ) {
+        // close the expanded nav menu
         dispatch(updateNavState(false));
         return;
       }

@@ -4,7 +4,7 @@ import { appTitle, API_KEY } from "../globals/globals";
 import Movies from "../components/Movies";
 import CategoryBar from "../components/CategoryBar";
 import LoadMoreButton from "../components/LoadMoreButton";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 
 const PageHome = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,11 +22,8 @@ const PageHome = () => {
     document.title = `${appTitle} - Home`;
 
     if (movieCategory) {
-      // console.log(pageNumber, movieCategory);
-      // console.log(previousMovieCategory.current, movieCategory);
+      // check if there is a change in catergory
       if (movieCategory !== previousMovieCategory.current) {
-        // check if there is a change in catergory
-
         setPageNumber(1);
         setTotalMoviesDataByCategory([]);
         setIsLoaded(false);
@@ -82,7 +79,7 @@ const PageHome = () => {
         <Loading />
       )} */}
 
-      {!isLoaded && <Loading />}
+      {/* {!isLoaded && <Loading />} */}
 
       {isLoaded && <Movies moviesData={totalMoviesDataByCategory} />}
 
