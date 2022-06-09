@@ -35,17 +35,25 @@ export default function NavMain({ reference }) {
         dispatch(updateNavState(false));
       }}>
       <ul>
-        <NavLink to='/' tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
-          <li>Home</li>
-        </NavLink>
-        <NavLink to='/about' tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
-          <li>About</li>
-        </NavLink>
-        <NavLink
-          to='/favourites'
-          tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
-          <li>Favourites</li>
-        </NavLink>
+        <li>
+          <NavLink to='/' tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to='/about'
+            tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to='/favourites'
+            tabIndex={isDesktopView ? 0 : isNavOpen ? 0 : -1}>
+            Favourites
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

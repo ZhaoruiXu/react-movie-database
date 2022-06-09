@@ -51,7 +51,7 @@ header {
         font-weight: 300;
         width: 100%;
         border: none;
-        padding: 0.5rem 5% 0.5rem 25%;
+        padding: 0.5rem 20% 0.5rem 25%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -130,23 +130,29 @@ header {
       list-style-type: none;
       padding: 0;
       margin: 0;
-      a {
-        color: $lightest-grey;
-        font-size: 1.25rem;
-        font-weight: 400;
-        text-decoration: none;
-        &.active {
-          color: $white;
-        }
-        li {
+      li {
+        a {
+          display: inline-block;
+          color: $lightest-grey;
+          font-size: 1.25rem;
+          font-weight: 300;
+          text-decoration: none;
+          width: 100%;
+          height: 100%;
           padding: 0.75rem 0;
-        }
-        &:hover,
-        &:focus {
-          color: $white;
-          li {
-            background-color: $rose-red;
+          &.active {
+            color: $white;
           }
+        }
+        &:hover {
+          background-color: $rose-red;
+        }
+        &:hover a {
+          color: $white;
+        }
+        &:focus-within {
+          background-color: $rose-red;
+          color: $white;
         }
       }
     }
@@ -192,20 +198,28 @@ header {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        a {
-          &:first-child {
-            margin-left: 2rem;
+        li {
+          a {
+            padding: 0;
+            margin: 0;
+            width: auto;
+            height: auto;
+          }
+          &:first-child a {
+            margin: 0 4rem 0 2rem;
+          }
+          &:nth-child(2) a {
             margin-right: 4rem;
           }
-          &:nth-child(2) {
-            margin-right: 4rem;
+          &:hover {
+            background-color: unset;
           }
-          &:hover,
-          &:focus {
+          &:hover a {
             color: $white;
-            li {
-              background-color: transparent;
-            }
+          }
+          &:focus-within {
+            background-color: unset;
+            color: $white;
           }
         }
       }
@@ -213,7 +227,7 @@ header {
     .search-and-nav-wrapper {
       .search-bar {
         input[type="text"] {
-          padding: 0.65rem 5% 0.65rem 25%;
+          padding: 0.65rem 20% 0.65rem 25%;
           font-size: 1.25rem;
           &::placeholder {
             font-weight: 300;
