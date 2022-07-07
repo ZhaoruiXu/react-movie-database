@@ -13,7 +13,7 @@ export default function footer() {
     <footer>
       <div className='footer-wrapper'>
         <h2>
-          <Link to='/'>.MovDB</Link>
+          <Link to='/'>.MovDb</Link>
         </h2>
         <nav className='footer-nav'>
           <ul>

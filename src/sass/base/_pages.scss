@@ -26,8 +26,10 @@ section {
 
 .search-page {
   padding-bottom: 2rem;
+  min-height: 100vh;
   &.center {
     width: 100%;
+    min-height: unset;
     height: calc(100vh - 63.38px - 242.39px);
     overflow: hidden;
     display: flex;
