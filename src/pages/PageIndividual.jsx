@@ -5,7 +5,6 @@ import { addFav, deleteFav } from "../features/favs/favsSlice";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   appTitle,
-  API_KEY,
   endPointGetW500Img,
   endPointGetOriginalImg,
 } from "../globals/globals";
@@ -30,7 +29,7 @@ const PageIndividual = () => {
     if (id || id !== undefined) {
       const fetchMovieObj = async () => {
         const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
         );
         if (!res.ok) {
           navigate("/");

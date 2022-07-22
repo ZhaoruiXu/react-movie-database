@@ -1,10 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { appTitle, API_KEY } from "../globals/globals";
+import { appTitle } from "../globals/globals";
 import Movies from "../components/Movies";
 import CategoryBar from "../components/CategoryBar";
 import LoadMoreButton from "../components/LoadMoreButton";
-// import Loading from "../components/Loading";
 
 const PageHome = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,7 +33,7 @@ const PageHome = () => {
         if (pageNumber !== previousPageNumber.current || pageNumber === 1) {
           // check if there is a new page number OR pageNumber equal 1 (occurs when a new catergory is selected, including initial loading)
           const res = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
+            `https://api.themoviedb.org/3/movie/${movieCategory}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${pageNumber}`
           );
 
           if (res.ok) {

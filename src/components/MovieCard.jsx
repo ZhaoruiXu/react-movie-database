@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addFav, deleteFav } from "../features/favs/favsSlice";
 import moviePosterPlaceHolder from "../images/movie-poster-placeholder.svg";
 import movieBackdropPlaceHolder from "../images/movie-backdrop-placeholder.svg";
-import { endPointGetW500Img, API_KEY } from "../globals/globals";
+import { endPointGetW500Img } from "../globals/globals";
 import FavButton from "../components/FavButton";
 import MoreInfoButton from "../components/MoreInfoButton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -39,7 +39,7 @@ export default function MovieCard({ movieId }) {
       } else {
         const fetchMovieObj = async () => {
           const res = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
+            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}`
           );
           let data = await res.json();
 

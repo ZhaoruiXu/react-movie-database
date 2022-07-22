@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateSearchQuery } from "../features/searchQuery/searchQuerySlice";
 import { useParams } from "react-router-dom";
-import { appTitle, API_KEY } from "../globals/globals";
+import { appTitle } from "../globals/globals";
 import Movies from "../components/Movies";
 
 const PageSearch = () => {
@@ -19,7 +19,7 @@ const PageSearch = () => {
 
       const fetchMoviesByQuery = async () => {
         const res = await fetch(
-          `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&include_adult=false`
+          `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${query}&include_adult=false`
         );
         let data = await res.json();
         setMoviesDataByQuery(data);
